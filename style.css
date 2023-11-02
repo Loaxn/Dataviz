@@ -31,3 +31,39 @@ margin: 0; /* Remove default margin to center horizontally */
 	100% { transform: translate(0, -0px); } 
 }
 
+svg {
+    width: 100%;
+	/* border: solid yellow; */
+	position: absolute;
+	left: 0;
+	top: 100%;
+	
+      }
+  
+
+
+
+.map__image path , polygon{
+  fill: rgb(102, 102, 230);
+  transition: fill 0.3s;
+  /* stroke: beige; */
+  stroke-width: 0.5;
+}
+
+.map__image path:hover{
+  fill: rgb(177, 177, 197);
+  transition: fill 0.3s;
+  stroke:rgb(177, 177, 197) ;
+  
+
+}
+
+.map__image polygon:hover{
+  fill: rgb(177, 177, 197);
+  transition: fill 0.3s;
+  stroke:rgb(177, 177, 197) ;
+
+}
+
+
+
