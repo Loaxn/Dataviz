@@ -5,7 +5,7 @@
 }
 
 body{
-background: rgb(8, 120, 151);
+/* background: rgb(8, 120, 151); */
 background: linear-gradient(90deg,rgb(77, 139, 156) 41%, rgb(0, 212, 255) 100%);
 
 height: 100vh; /*This centers vertically within the viewport*/
@@ -36,26 +36,39 @@ svg {
 	
       }
 
-.map
+.map{
+  background-color: #EBF3F3;
+  margin-top: 20%;
+  
+}
 
+.map h1{
+  color: #9D1815;
+  font-size: 4rem;
+  text-align: center;
+  
+}
+.map__image{
+  width: 75%;
+}
 .map__image path , polygon{
-  fill: rgb(102, 102, 230);
+  fill: #5797A0;
   transition: fill 0.3s;
   /* stroke: beige; */
   stroke-width: 0.5;
 }
 
 .map__image path:hover{
-  fill: rgb(177, 177, 197);
+  fill: #EBF3F3;
   transition: fill 0.3s;
-  stroke:rgb(177, 177, 197) ;
+  stroke:#EBF3F3 ;
 
 }
 
 .map__image polygon:hover{
-  fill: rgb(177, 177, 197);
+  fill: #EBF3F3;
   transition: fill 0.3s;
-  stroke:rgb(177, 177, 197) ;
+  stroke:#EBF3F3;
 
 }
 /* LOANA FIN */
@@ -63,7 +76,7 @@ svg {
 /* ALINA */
 .graph {
 height: 90vh;
-background-color: #1F5766;
+background-color:inherit;
 }
 .boutons {
   margin-bottom: 20px;
