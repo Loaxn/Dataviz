@@ -4,44 +4,35 @@
     box-sizing: border-box;
 }
 
-
 body{
 background: rgb(8, 120, 151);
 background: linear-gradient(90deg, rgba(31,87,102,1) 41%, rgba(0,212,255,1) 100%);
-display: flex;
-justify-content: center;
-align-items: center;
 height: 100vh; /*This centers vertically within the viewport*/
 margin: 0; /* Remove default margin to center horizontally */
 }
 
-
+/* ALEX  */
 .skeleton { 
 	animation-name: floating;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
-	margin-top: 10%;
-    width: 65%;
-}
+} /* Code qui donne un effet de flottement à l'image */
 
 @keyframes floating {
 	0% { transform: translate(0, 0px); }
 	50% { transform: translate(0, 15px); }
 	100% { transform: translate(0, -0px); } 
 }
+/* ALEX FIN */
+
+/* LOANA */
 
 svg {
     width: 100%;
 	/* border: solid yellow; */
-	position: absolute;
-	left: 0;
-	top: 100%;
 	
       }
-  
-
-
 
 .map__image path , polygon{
   fill: rgb(102, 102, 230);
@@ -54,7 +45,6 @@ svg {
   fill: rgb(177, 177, 197);
   transition: fill 0.3s;
   stroke:rgb(177, 177, 197) ;
-  
 
 }
 
@@ -64,6 +54,8 @@ svg {
   stroke:rgb(177, 177, 197) ;
 
 }
+/* LOANA FIN */
 
+/* ALINA */
 
-
+/* ALINA FIN */
