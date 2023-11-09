@@ -57,5 +57,40 @@ svg {
 /* LOANA FIN */
 
 /* ALINA */
-
+.graph {
+height: 90vh;
+background-color: #1F5766;
+}
+.boutons {
+  margin-bottom: 20px;
+}
+.graphique{
+  border: solid palegreen;
+  width: 100%;
+  height: 100%;
+}
+.graphiqueinfo {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+.graphiqueboutons {
+  width: 100%;
+  margin-right: 50px;
+}
+.graph input[type="button"]{
+   text-align:center;
+   background-color: rgba(0, 0, 0, 0.445);
+   color: white;
+   padding: 5px;
+   border: none;
+  }
+.info {
+  width: 20vw;
+  color: white;
+}
+.info img {
+  width: 100%;
+}
 /* ALINA FIN */
