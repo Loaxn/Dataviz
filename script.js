@@ -9,6 +9,6 @@ fetch('data.json').then(function (response){
     .data(data)
     .join("div")
     .attr("class","noms")
-    .text(`state : ${State}`);
+    .text(`state : ${state}`);
     });
 });

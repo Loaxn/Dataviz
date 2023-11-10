@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Laurent Bulteau (laurent.bulteau@univ-eiffel.fr)" />
+  <title>TD3 – Histogramme</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TD3 – Histogramme</h1>
+<p class="author">Laurent Bulteau (laurent.bulteau@univ-eiffel.fr)</p>
+<p class="date">Septembre 2023</p>
+</header>
+<p><a href="https://igm.univ-mlv.fr/~bulteau/mmi/index.html">Index de la page de cours</a></p>
+<p><img src="images/goal.gif" /></p>
+<h1 id="objectif">Objectif</h1>
+<p>Représenter par un histogramme une série de paires de données, dans l’exemple:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> data_paires<span class="op">=</span>[</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">32</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">25</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">40</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">75</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">65</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">84</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">70</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">54</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">99</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">21</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">43</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">19</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">52</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">33</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="op">{</span><span class="dt">A</span><span class="op">:</span><span class="dv">12</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span><span class="dv">37</span><span class="op">}</span></a>
+<a class="sourceLine" id="cb1-10" title="10">]</a></code></pre></div>
+<h1 id="etapes">Etapes</h1>
+<h2 id="faire-un-dessin">Faire un dessin</h2>
+<ul>
+<li>Faire un schéma de l’histogramme, avec les limites (x,y,largeur,hauteur), les positions des axes, …
+<ul>
+<li><a href="notes.html#dimensions-et-coordonnées">Dimensions et coordonnées</a></li>
+</ul></li>
+</ul>
+<h2 id="préparer-le-dossier">Préparer le dossier</h2>
+<ul>
+<li>Créer un dossier avec le .html contenant le squelette du fichier, un .js et le fichier d3.js</li>
+</ul>
+<h2 id="ecrire-la-balise-svg">Ecrire la balise SVG</h2>
+<ul>
+<li>Faire attention aux dimensions et à la viewBox</li>
+</ul>
+<h2 id="contenu-fixe-du-svg">Contenu “fixe” du SVG</h2>
+<ul>
+<li>Dessiner un rectangle de fond</li>
+<li>Dessiner deux lignes pour les axes</li>
+<li>Insérer un groupe (g) entre les deux qui contiendra le reste du dessin</li>
+</ul>
+<h2 id="décorer-les-axes">Décorer les axes</h2>
+<ul>
+<li>Ajouter des <a href="notes.html#pointes-de-flèches">marqueurs</a> sur les axes</li>
+</ul>
+<h2 id="ouvrir-le-.js">Ouvrir le .js</h2>
+<ul>
+<li>Créer une variable contenant les données</li>
+<li>Calculer la largeur des barres</li>
+<li>Calculer l’échelle verticale des barres</li>
+</ul>
+<h2 id="créer-un-groupe-par-paire">Créer un groupe par paire</h2>
+<ul>
+<li>Avec les données associées à chaque paire</li>
+<li>Utiliser <code>translate()</code> pour placer chaque groupe en x</li>
+</ul>
+<h2 id="insérer-les-rectangles-du-bas">Insérer les rectangles du bas</h2>
+<ul>
+<li>Le placement est en x=0 et y=0 (le groupe entier est décallé en x)</li>
+<li>La hauteur est proportionnelle à d.A</li>
+</ul>
+<h2 id="insérer-les-rectangles-du-haut">Insérer les rectangles du haut</h2>
+<ul>
+<li>Utiliser d.B pour la hauteur</li>
+<li>On peut utiliser <code>transform=scale(1,-1)</code> pour retourner verticallement un objet</li>
+</ul>
+<h2 id="réagir-à-lentrée-de-la-souris">Réagir à l’entrée de la souris</h2>
+<ul>
+<li>Toutes les barres deviennent transparentes, sauf celle survolée</li>
+</ul>
+<h2 id="réagir-à-la-sortie-de-la-souris">Réagir à la sortie de la souris</h2>
+<ul>
+<li>Toutes les barres perdent leur transparence</li>
+</ul>
+<h2 id="préparer-la-visualisation-horizontale">Préparer la visualisation horizontale</h2>
+<ul>
+<li>Insérer un nouveau svg dans le html, aux bonnes dimensions</li>
+<li>Y insérer deux rectangles (bleu et rouge), initiallement invisibles (width=0)</li>
+</ul>
+<h2 id="la-visualisation-horizontale-sadapte-à-la-souris">La visualisation horizontale s’adapte à la souris</h2>
+<ul>
+<li>Modifer les dimensions <code>width</code>, <code>height</code> de chaque élément quand la souris survole ou quitte l’histogramme</li>
+</ul>
+<h2 id="insérer-une-ligne-médiane">Insérer une ligne médiane</h2>
+<ul>
+<li>La hauteur varie avec la hauteur des deux barres</li>
+</ul>
+<h2 id="insérer-des-labels">Insérer des labels</h2>
+<ul>
+<li>Le contenu correspond aux valeurs d.A et d.B</li>
+</ul>
+</body>
+</html>

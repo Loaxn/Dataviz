@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Laurent Bulteau (laurent.bulteau@univ-eiffel.fr)" />
+  <title>Notes de cours Javascript et D3.js</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Notes de cours Javascript et D3.js</h1>
+<p class="author">Laurent Bulteau (laurent.bulteau@univ-eiffel.fr)</p>
+<p class="date">Septembre 2023</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#principes-du-javascript">Principes du Javascript</a><ul>
+<li><a href="#principe-de-base">Principe de base</a></li>
+<li><a href="#utilisations">Utilisations</a></li>
+<li><a href="#temporalité">Temporalité</a></li>
+</ul></li>
+<li><a href="#bases-du-langage">Bases du langage</a><ul>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#affectations">Affectations</a></li>
+<li><a href="#console-affichage">Console, affichage</a></li>
+<li><a href="#conditions-avec-if">Conditions avec if</a></li>
+<li><a href="#conditions-avec-ifelse">Conditions avec if/else</a></li>
+<li><a href="#enchaînement-de-conditions-avec-ifelse">Enchaînement de conditions avec if/else</a></li>
+<li><a href="#condition-avec-opérateur-ternaire">Condition avec opérateur ternaire</a></li>
+<li><a href="#boucles-for">Boucles for</a></li>
+<li><a href="#boucles-while">Boucles while</a></li>
+<li><a href="#boucles-sur-les-tableaux">Boucles sur les tableaux</a></li>
+<li><a href="#arrêter-une-boucle">Arrêter une boucle</a></li>
+<li><a href="#limites-des-boucles">Limites des boucles</a></li>
+<li><a href="#nombres">Nombres</a></li>
+<li><a href="#chaînes-de-caractètes">Chaînes de caractètes</a></li>
+<li><a href="#booléens">Booléens</a></li>
+<li><a href="#valeurs-exception">Valeurs “exception”</a></li>
+</ul></li>
+<li><a href="#fonctions">Fonctions</a><ul>
+<li><a href="#principe">Principe</a></li>
+<li><a href="#avec-un-paramètre">Avec un paramètre</a></li>
+<li><a href="#plusieurs-paramètres">Plusieurs paramètres</a></li>
+<li><a href="#valeur-de-retour">Valeur de retour</a></li>
+<li><a href="#fonctions-anonymes">Fonctions anonymes</a></li>
+<li><a href="#fonctions-fléchées">Fonctions fléchées</a></li>
+</ul></li>
+<li><a href="#structurer-ses-données">Structurer ses données</a><ul>
+<li><a href="#tableau-simple">Tableau simple</a></li>
+<li><a href="#lecture-écriture-case-par-case">Lecture / écriture case par case</a></li>
+<li><a href="#parcourir-un-tableau">Parcourir un tableau</a></li>
+<li><a href="#fonctions-sur-les-tableaux">Fonctions sur les tableaux</a></li>
+<li><a href="#filtrer-un-tableau">Filtrer un tableau</a></li>
+<li><a href="#références-deux-variables-un-seul-tableau">Références: deux variables, un seul tableau</a></li>
+<li><a href="#objets-litéraux">Objets litéraux</a></li>
+<li><a href="#créer-un-objet">Créer un objet</a></li>
+<li><a href="#accès-en-lecture">Accès en lecture</a></li>
+<li><a href="#accès-en-écriture">Accès en écriture</a></li>
+<li><a href="#tester-une-clef">Tester une clef</a></li>
+<li><a href="#imbrication">Imbrication</a></li>
+<li><a href="#json">JSON</a></li>
+</ul></li>
+<li><a href="#le-format-svg">Le format SVG</a><ul>
+<li><a href="#les-images-svg">Les images SVG</a></li>
+<li><a href="#lélément-svg">L’élément &lt;svg&gt;</a></li>
+<li><a href="#dimensions-et-coordonnées">Dimensions et coordonnées</a></li>
+<li><a href="#formes-de-base">Formes de base</a></li>
+<li><a href="#groupes-et-transformations">Groupes et transformations</a></li>
+<li><a href="#réutilisation-déléments">Réutilisation d’éléments</a></li>
+<li><a href="#pointes-de-flèches">Pointes de flèches</a></li>
+</ul></li>
+<li><a href="#d3.js">D3.js</a><ul>
+<li><a href="#principe-1">Principe</a></li>
+<li><a href="#sélection">Sélection</a></li>
+<li><a href="#styles">Styles</a></li>
+<li><a href="#attributs-et-propriétés">Attributs et propriétés</a></li>
+<li><a href="#textehtml">Texte/HTML</a></li>
+<li><a href="#ajouter-un-élément">Ajouter un élément</a></li>
+<li><a href="#chaînes-dopérations">Chaînes d’opérations</a></li>
+<li><a href="#evènements">Evènements</a></li>
+<li><a href="#types-dévènements">Types d’évènements</a></li>
+<li><a href="#associer-les-données">Associer les données</a></li>
+<li><a href="#autant-déléments-que-de-données">Autant d’éléments que de données</a></li>
+<li><a href="#utiliser-les-données">Utiliser les données</a></li>
+<li><a href="#identifiants-sur-les-données">Identifiants sur les données</a></li>
+<li><a href="#d3-et-inputs">d3 et inputs</a></li>
+<li><a href="#animations">Animations</a></li>
+</ul></li>
+<li><a href="#points-divers">Points divers</a><ul>
+<li><a href="#nombres-aléatoires">Nombres aléatoires</a></li>
+<li><a href="#chronomètres">Chronomètres</a></li>
+<li><a href="#géométrie">Géométrie</a></li>
+<li><a href="#axes-gradués">Axes gradués</a></li>
+</ul></li>
+</ul>
+</nav>
+<p><a href="index.html">Retour à l’index du cours</a></p>
+<h1 id="principes-du-javascript">Principes du Javascript</h1>
+<h2 id="principe-de-base">Principe de base</h2>
+<ul>
+<li>Le code HTML permet de décrire un état “statique” de la page</li>
+<li>Le javascript exécuté par le navigateur permet de modifier le contenu/format de la page</li>
+</ul>
+<h2 id="utilisations">Utilisations</h2>
+<ul>
+<li>Adapter la présentation à des données quelconques
+<ul>
+<li>histogrammes, cartes, etc.</li>
+</ul></li>
+<li>Fluidifier/dynamiser l’affichage
+<ul>
+<li>animations, zoom, …</li>
+</ul></li>
+<li>Interactions rapides avec l’utilisateur, sans aller-retour au serveur
+<ul>
+<li>jeux, filtres, …</li>
+</ul></li>
+</ul>
+<h2 id="temporalité">Temporalité</h2>
+<ul>
+<li>Le navigateur exécute le javascript au fur et à mesure du chargement de la page</li>
+<li>Certaines lignes peuvent être exécutées après chaque <strong>évènement</strong> sur la page: la souris bouge, un click, une touche est pressée/relachée, etc.</li>
+<li>Le navigateur “gèle” le temps d’exécuter ces lignes et de mettre à jour l’affichage, puis redonne la main à l’utilisateur</li>
+</ul>
+<h1 id="bases-du-langage">Bases du langage</h1>
+<h2 id="variables">Variables</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x<span class="op">=</span><span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">let</span> y<span class="op">=</span><span class="st">&quot;bonjour&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">let</span> z<span class="op">;</span></a></code></pre></div>
+<ul>
+<li><strong><code>let</code></strong> est utilisé <strong>1</strong> fois par variable (<em>définition</em>)</li>
+<li><strong><code>var</code></strong> est similaire, mais <strong><code>let</code></strong> détecte mieux les erreurs potentielles</li>
+</ul>
+<h2 id="affectations">Affectations</h2>
+<p><strong>variable</strong> = <strong>expression</strong>;</p>
+<ul>
+<li><em>variable</em> : quelque chose qui peut enregistrer une valeur (généralement un nom de variable)</li>
+<li><em>expression</em> : quelque chose qui a une valeur (en utilisant des constantes, des variables, des calculs, etc.)</li>
+</ul>
+<h2 id="console-affichage">Console, affichage</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">let</span> message<span class="op">=</span><span class="st">&quot;bonjour&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="va">console</span>.<span class="at">log</span>(message)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="at">alert</span>(message)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw">let</span> nom<span class="op">=</span><span class="at">prompt</span>(<span class="st">&quot;quel est votre nom?&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<ul>
+<li><strong>Attention:</strong> alert est très utilisée dans les démos, mais presque jamais en pratique</li>
+<li>Accéder à la console avec <strong>Ctrl+Shift+J</strong> ou <strong>F12</strong></li>
+</ul>
+<h2 id="conditions-avec-if">Conditions avec if</h2>
+<ul>
+<li>Un seul cas</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">let</span> message<span class="op">=</span><span class="st">&quot;tout va bien&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="cf">if</span> (vies<span class="op">==</span><span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    message<span class="op">=</span><span class="st">&quot;KO&quot;</span><span class="op">;</span>    </a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="op">}</span></a></code></pre></div>
+<h2 id="conditions-avec-ifelse">Conditions avec if/else</h2>
+<ul>
+<li>Un cas + le reste</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">let</span> message<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="cf">if</span> (vies<span class="op">==</span><span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    message<span class="op">=</span><span class="st">&quot;KO&quot;</span><span class="op">;</span>    </a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-5" title="5">    message<span class="op">=</span><span class="st">&quot;tout va bien&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="op">}</span></a></code></pre></div>
+<h2 id="enchaînement-de-conditions-avec-ifelse">Enchaînement de conditions avec if/else</h2>
+<ul>
+<li>Cas complexes:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">let</span> message<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="cf">if</span> (vies<span class="op">==</span><span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-3" title="3">    message<span class="op">=</span><span class="st">&quot;KO&quot;</span><span class="op">;</span>    </a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> (vies<span class="op">&lt;=</span><span class="dv">2</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-5" title="5">    message<span class="op">=</span><span class="st">&quot;attention...&quot;</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-7" title="7">    message<span class="op">=</span><span class="st">&quot;tout va bien&quot;</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="op">}</span></a></code></pre></div>
+<h2 id="condition-avec-opérateur-ternaire">Condition avec opérateur ternaire</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">let</span> message <span class="op">=</span> vies<span class="op">==</span><span class="dv">0</span> <span class="op">?</span> <span class="st">&quot;KO&quot;</span> : <span class="st">&quot;tout va bien&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="at">alert</span>(<span class="vs">`Il vous reste </span><span class="sc">${</span>vies<span class="sc">}</span><span class="vs"> vie</span><span class="sc">${</span>vies<span class="op">&gt;</span><span class="dv">1</span> <span class="op">?</span> <span class="st">&#39;s&#39;</span> : <span class="st">&#39;&#39;</span> <span class="sc">}</span><span class="vs">.`</span>)<span class="op">;</span></a></code></pre></div>
+<p><strong>Attention:</strong> Utiliser uniquement pour des expressions <em>très</em> simples</p>
+<h2 id="boucles-for">Boucles for</h2>
+<ul>
+<li>Boucle simple</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" title="1"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">10</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb7-2" title="2">    <span class="va">console</span>.<span class="at">log</span>(i)<span class="op">;</span>  </a>
+<a class="sourceLine" id="cb7-3" title="3">    <span class="co">//0, 1, 2, ... 9</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>Boucles imbriquées</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" title="1"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">10</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-2" title="2">    <span class="cf">for</span> (<span class="kw">let</span> j<span class="op">=</span><span class="dv">1</span><span class="op">;</span> j<span class="op">&lt;</span><span class="dv">10</span><span class="op">;</span> j<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-3" title="3">        <span class="va">console</span>.<span class="at">log</span>(i<span class="op">,</span> j<span class="op">,</span> i<span class="op">*</span>j)<span class="op">;</span>    </a>
+<a class="sourceLine" id="cb8-4" title="4">        <span class="co">//1*1=1, 1*2=2, ... 9*9=81</span></a>
+<a class="sourceLine" id="cb8-5" title="5">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="op">}</span></a></code></pre></div>
+<h2 id="boucles-while">Boucles while</h2>
+<ul>
+<li>Condition au début (le plus classique)</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">let</span> x<span class="op">=</span><span class="dv">12</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="cf">while</span> (x<span class="op">&gt;</span><span class="dv">1</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-3" title="3">    x<span class="op">=</span>x/<span class="dv">2</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>Condition à la fin
+<ul>
+<li>Pas de test avant le premier passage</li>
+<li>utiliser si le test n’a pas de sens à l’entrée dans la boucle.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">let</span> x<span class="op">;</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="cf">do</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-3" title="3">    x<span class="op">=</span><span class="at">Number</span>(<span class="at">prompt</span>(<span class="st">&quot;saisir un nombre&quot;</span>)) </a>
+<a class="sourceLine" id="cb10-4" title="4">        <span class="co">// renvoie le nombre saisi par l&#39;utilisateur</span></a>
+<a class="sourceLine" id="cb10-5" title="5">        <span class="co">// NaN en cas de caractère incorrect</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="op">}</span> <span class="cf">while</span> (<span class="at">isNaN</span>(x))<span class="op">;</span></a></code></pre></div>
+<h2 id="boucles-sur-les-tableaux">Boucles sur les tableaux</h2>
+<p>Cf. <a href="#parcourir-un-tableau">Parcourir un tableau</a>.</p>
+<h2 id="arrêter-une-boucle">Arrêter une boucle</h2>
+<p><strong>break;</strong> met fin complètement à une boucle</p>
+<p><strong>continue;</strong> met fin à cette itération: vérifie directement la condition pour passer au prochain tour</p>
+<h2 id="limites-des-boucles">Limites des boucles</h2>
+<p>Une boucle gèle le navigateur tant qu’elle s’exécute: aucune interaction extérieure avant la fin.</p>
+<p>On de dit pas … mais …</p>
+<ul>
+<li>“tant que la souris bouge”
+<ul>
+<li>“à chaque mouvement de la souris”</li>
+</ul></li>
+<li>“la case affiche le nombre de vies”
+<ul>
+<li>“mettre la case à jour quand on perd une vie”</li>
+</ul></li>
+<li>“afficher le monstre tant qu’il est vivant”
+<ul>
+<li>“faire disparaître le monstre à sa mort”</li>
+</ul></li>
+<li>“le chrono progresse en continu”
+<ul>
+<li>“mettre à jour le chrono toutes les secondes”</li>
+</ul></li>
+</ul>
+<h2 id="nombres">Nombres</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">let</span> x<span class="op">=</span><span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">let</span> y<span class="op">=</span><span class="dv">2</span><span class="op">*</span>x<span class="op">+</span><span class="dv">3</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb11-3" title="3">x<span class="op">+=</span><span class="dv">3</span><span class="op">;</span> <span class="co">//x=8</span></a>
+<a class="sourceLine" id="cb11-4" title="4">x<span class="op">++;</span>  <span class="co">//x=9</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="kw">let</span> z<span class="op">=</span><span class="va">Math</span>.<span class="at">cos</span>(<span class="va">Math</span>.<span class="at">PI</span>/<span class="dv">3</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="kw">let</span> de<span class="op">=</span><span class="va">Math</span>.<span class="at">floor</span>(<span class="va">Math</span>.<span class="at">random</span>()<span class="op">*</span><span class="dv">6</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="chaînes-de-caractètes">Chaînes de caractètes</h2>
+<ul>
+<li><strong>chaîne simple</strong> (guillemets doubles ou simples)</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">let</span> nom<span class="op">=</span><span class="st">&quot;anakin&quot;</span><span class="op">;</span> </a></code></pre></div>
+<ul>
+<li><strong>gabarit</strong> (guillemets inversés)
+<ul>
+<li>${} pour inclure une variable dans une chaîne</li>
+<li>sauts de ligne autorisés</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">let</span> message<span class="op">=</span><span class="vs">`bonjour </span><span class="sc">${</span>nom<span class="sc">}</span><span class="vs">!</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="vs">Comment ça va aujourd&#39;hui ? `</span><span class="op">;</span>      </a></code></pre></div>
+<ul>
+<li>concaténation avec +</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">let</span> suite<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">10</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb14-3" title="3">    <span class="co">//concaténation</span></a>
+<a class="sourceLine" id="cb14-4" title="4">    suite <span class="op">+=</span> <span class="vs">`</span><span class="sc">${</span>i<span class="sc">}</span><span class="vs"> `</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb14-6" title="6">suite<span class="op">=</span><span class="st">&quot;[ &quot;</span><span class="op">+</span>suite<span class="op">+</span><span class="st">&quot;]&quot;</span><span class="op">;</span> </a></code></pre></div>
+<h2 id="booléens">Booléens</h2>
+<ul>
+<li>Vrai/faux: peuvent être affectés à des variables</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">let</span> vivant <span class="op">=</span> vies <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span></a></code></pre></div>
+<ul>
+<li><strong>x Ou y</strong>: <code>x || y</code></li>
+<li><strong>x Et y</strong>: <code>x &amp;&amp; y</code></li>
+<li><strong>Pas x</strong>: <code>!x</code></li>
+</ul>
+<h2 id="valeurs-exception">Valeurs “exception”</h2>
+<ul>
+<li><strong>undefined</strong>: variable non définie</li>
+<li><strong>NaN</strong>: not a number (résultat d’un calcul impossible)<br />
+tester <em>uniquement</em> avec <code>isNaN(x)</code> (<code>x==NaN</code> est toujours faux)</li>
+<li><strong>Infinity</strong>: nombre plus grand que tous les autres</li>
+<li><strong>null</strong>: absence de valeur</li>
+</ul>
+<h1 id="fonctions">Fonctions</h1>
+<h2 id="principe">Principe</h2>
+<p>Lignes de code à exécuter <strong>plus tard</strong>, peut-être plusieurs fois (ou peut-être jamais)</p>
+<ul>
+<li>Définir une fonction (= lier des instructions à un nom)</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">function</span> <span class="at">bonjour</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb16-2" title="2">    <span class="at">alert</span>(<span class="st">&quot;bonjour!&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>Appeler une fonction (= exécuter les instructions)</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" title="1"><span class="at">bonjour</span>()<span class="op">;</span> <span class="co">// premier message &quot;bonjour!&quot;</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="at">bonjour</span>()<span class="op">;</span> <span class="co">// deuxième message &quot;bonjour!&quot;</span></a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="at">setInterval</span>(<span class="dv">1500</span><span class="op">,</span> bonjour)<span class="op">;</span> <span class="co">// appeler bonjour() toutes les 1500ms</span></a></code></pre></div>
+<h2 id="avec-un-paramètre">Avec un paramètre</h2>
+<p><strong>paramètre</strong> = information supplémentaire utile à la fonction, et stockée dans une variable</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">function</span> <span class="at">bonjour</span>(qui)<span class="op">{</span>  </a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="co">// *qui* est une variable, sa valeur sera fixée au moment </span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="co">// de chaque appel</span></a>
+<a class="sourceLine" id="cb18-4" title="4">    <span class="at">alert</span>(<span class="vs">`bonjour </span><span class="sc">${</span>qui<span class="sc">}</span><span class="vs">!`</span>)</a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="at">bonjour</span>(<span class="st">&quot;Alice&quot;</span>)<span class="op">;</span> <span class="co">// premier appel avec qui=&quot;Alice&quot; </span></a>
+<a class="sourceLine" id="cb18-7" title="7">                  <span class="co">// =&gt; &quot;bonjour Alice!&quot;</span></a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="at">bonjour</span>(<span class="st">&quot;Bob&quot;</span>)<span class="op">;</span>   <span class="co">// deuxième appel  avec qui=&quot;Bob&quot; </span></a>
+<a class="sourceLine" id="cb18-9" title="9">                  <span class="co">// =&gt; &quot;bonjour Bob!&quot;</span></a></code></pre></div>
+<h2 id="plusieurs-paramètres">Plusieurs paramètres</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">function</span> <span class="at">accueil</span>(qui<span class="op">,</span> meteo)<span class="op">{</span>  </a>
+<a class="sourceLine" id="cb19-2" title="2">    <span class="at">alert</span>(<span class="vs">`bonjour </span><span class="sc">${</span>qui<span class="sc">}</span><span class="vs">, il </span><span class="sc">${</span>meteo<span class="sc">}</span><span class="vs"> aujourd&#39;hui!`</span>)</a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb19-4" title="4"></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="at">accueil</span>(<span class="st">&quot;Alice&quot;</span><span class="op">,</span> <span class="st">&quot;fait beau&quot;</span>)<span class="op">;</span> </a>
+<a class="sourceLine" id="cb19-6" title="6">   <span class="co">// =&gt; &quot;bonjour Alice, il fait beau aujourd&#39;hui!&quot;</span></a>
+<a class="sourceLine" id="cb19-7" title="7">   </a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="at">accueil</span>(<span class="st">&quot;Bob&quot;</span><span class="op">,</span> <span class="st">&quot;pleut&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb19-9" title="9">   <span class="co">// =&gt; &quot;bonjour Bob, il pleut aujourd&#39;hui!&quot;</span></a></code></pre></div>
+<h2 id="valeur-de-retour">Valeur de retour</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">function</span> <span class="at">volume_sphere</span>(rayon)<span class="op">{</span>  </a>
+<a class="sourceLine" id="cb20-2" title="2">    <span class="cf">return</span> rayon<span class="op">*</span>rayon<span class="op">*</span>rayon<span class="op">*</span><span class="dv">4</span>/<span class="dv">3</span><span class="op">*</span><span class="va">Math</span>.<span class="at">PI</span><span class="op">;</span> </a>
+<a class="sourceLine" id="cb20-3" title="3">    <span class="co">//l&#39;appel à la fonction sera remplacé par cette valeur</span></a>
+<a class="sourceLine" id="cb20-4" title="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb20-5" title="5"></a>
+<a class="sourceLine" id="cb20-6" title="6"><span class="kw">let</span> total<span class="op">=</span><span class="at">volume_sphere</span>(<span class="dv">2</span>) <span class="op">+</span> <span class="at">volume_sphere</span>(<span class="dv">5</span>)<span class="op">;</span></a></code></pre></div>
+<p>Avec ou sans valeur, <strong>return</strong> termine automatiquement une fonction, le reste ne sera pas exécuté.</p>
+<h2 id="fonctions-anonymes">Fonctions anonymes</h2>
+<p>Les fonctions peuvent être stockées dans une variable ou passées en paramètre<br />
+=&gt; elles n’ont pas besoin de nom</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb21-1" title="1">bonjour <span class="op">=</span> <span class="kw">function</span> (qui)<span class="op">{</span>  </a>
+<a class="sourceLine" id="cb21-2" title="2">    <span class="at">alert</span>(<span class="vs">`bonjour </span><span class="sc">${</span>qui<span class="sc">}</span><span class="vs">!`</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="at">bonjour</span>(<span class="st">&quot;Eve&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb21-5" title="5"></a>
+<a class="sourceLine" id="cb21-6" title="6"><span class="kw">function</span> <span class="at">calculer</span>(x<span class="op">,</span> y<span class="op">,</span> operation) <span class="op">{</span></a>
+<a class="sourceLine" id="cb21-7" title="7">   <span class="cf">return</span> <span class="at">operation</span>(x<span class="op">,</span>y)<span class="op">;</span></a>
+<a class="sourceLine" id="cb21-8" title="8"><span class="op">}</span></a>
+<a class="sourceLine" id="cb21-9" title="9"><span class="at">calculer</span>(<span class="dv">2</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span> <span class="kw">function</span>(x<span class="op">,</span>y) <span class="op">{</span><span class="cf">return</span> x<span class="op">+</span>y<span class="op">}</span>) <span class="co">//renvoie 7</span></a>
+<a class="sourceLine" id="cb21-10" title="10"><span class="at">calculer</span>(<span class="dv">10</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span> <span class="kw">function</span>(x<span class="op">,</span>y) <span class="op">{</span><span class="cf">return</span> x<span class="op">*</span>y<span class="op">}</span>) <span class="co">//renvoie 40</span></a></code></pre></div>
+<h2 id="fonctions-fléchées">Fonctions fléchées</h2>
+<p>Pour alléger la syntaxe des fonctions courtes</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb22-1" title="1">message <span class="op">=</span> (qui<span class="op">,</span> meteo)<span class="kw">=&gt;</span> <span class="op">{</span> </a>
+<a class="sourceLine" id="cb22-2" title="2">    <span class="cf">return</span> <span class="vs">`bonjour </span><span class="sc">${</span>qui<span class="sc">}</span><span class="vs">, il </span><span class="sc">${</span>meteo<span class="sc">}</span><span class="vs"> aujourd&#39;hui!`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb22-4" title="4"></a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="at">alert</span>(<span class="at">message</span>(<span class="st">&quot;Alice&quot;</span><span class="op">,</span> <span class="st">&quot;fait beau&quot;</span>))<span class="op">;</span> </a>
+<a class="sourceLine" id="cb22-6" title="6">    <span class="co">// =&gt; &quot;bonjour Alice, il fait beau aujourd&#39;hui!&quot;</span></a></code></pre></div>
+<ul>
+<li>parenthèses optionnelles avec 1 paramètre</li>
+<li>accolades et return optionnels si aucune instruction intermédiaire</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb23-1" title="1">somme  <span class="op">=</span> (x<span class="op">,</span>y) <span class="kw">=&gt;</span> x<span class="op">+</span>y<span class="op">;</span></a>
+<a class="sourceLine" id="cb23-2" title="2">carre <span class="op">=</span> x<span class="kw">=&gt;</span>x<span class="op">*</span>x<span class="op">;</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="at">alert</span>(<span class="at">somme</span>(<span class="at">carre</span>(<span class="dv">4</span>)<span class="op">,</span> <span class="at">carre</span>(<span class="dv">3</span>)))<span class="op">;</span> </a>
+<a class="sourceLine" id="cb23-4" title="4">    <span class="co">// =&gt; 3²+4² = 25</span></a></code></pre></div>
+<ul>
+<li>Seule différence: <strong>this</strong> (cf <a href="#evènements">évènements</a>) n’est pas disponible</li>
+<li>Utiliser de préférence pour les fonctions très courtes</li>
+</ul>
+<h1 id="structurer-ses-données">Structurer ses données</h1>
+<h2 id="tableau-simple">Tableau simple</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">let</span> persos<span class="op">=</span>[<span class="st">&quot;yoda&quot;</span><span class="op">,</span><span class="st">&quot;anakin&quot;</span><span class="op">,</span><span class="st">&quot;solo&quot;</span>]<span class="op">;</span></a></code></pre></div>
+<p>Les cases sont implicitement numérotées 0, 1, 2 (…)</p>
+<h2 id="lecture-écriture-case-par-case">Lecture / écriture case par case</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb25-1" title="1"><span class="va">console</span>.<span class="at">log</span>(persos[<span class="dv">1</span>])<span class="op">;</span>      <span class="co">//anakin</span></a>
+<a class="sourceLine" id="cb25-2" title="2">persos[<span class="dv">1</span>] <span class="op">+=</span> <span class="st">&quot; skywalker&quot;</span><span class="op">;</span>   <span class="co">//modifie une case existante</span></a>
+<a class="sourceLine" id="cb25-3" title="3">persos[<span class="dv">3</span>] <span class="op">=</span> <span class="st">&quot;luke skywalker&quot;</span><span class="op">;</span><span class="co">//crée une nouvelle case</span></a>
+<a class="sourceLine" id="cb25-4" title="4">persos[<span class="dv">10</span>] <span class="op">=</span> <span class="st">&quot;BB8&quot;</span><span class="op">;</span>          <span class="co">//crée des cases &quot;undefined&quot;</span></a></code></pre></div>
+<h2 id="parcourir-un-tableau">Parcourir un tableau</h2>
+<ul>
+<li>boucle <strong>for of</strong></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb26-1" title="1"><span class="cf">for</span> (<span class="kw">let</span> personnage <span class="kw">of</span> persos) <span class="op">{</span> </a>
+<a class="sourceLine" id="cb26-2" title="2">    <span class="va">console</span>.<span class="at">log</span>(personnage)<span class="op">;</span>    </a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>boucle <strong>for</strong> avec index</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" title="1"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="va">persos</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span> </a>
+<a class="sourceLine" id="cb27-2" title="2">    <span class="va">console</span>.<span class="at">log</span>(persos[i])<span class="op">;</span>    </a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>boucle <strong>forEach + fonction fléchée</strong> (par exemple)</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb28-1" title="1"><span class="va">persos</span>.<span class="at">forEach</span>(personnage <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb28-2" title="2">   <span class="va">console</span>.<span class="at">log</span>(personnage)<span class="op">;</span>     </a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="va">persos</span>.<span class="at">forEach</span>((personnage<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb28-5" title="5">   <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`perso dans la case </span><span class="sc">${</span>i<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>personnage<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span>     </a>
+<a class="sourceLine" id="cb28-6" title="6"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="fonctions-sur-les-tableaux">Fonctions sur les tableaux</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb29-1" title="1"><span class="va">persos</span>.<span class="at">length</span><span class="op">;</span>             <span class="co">//longueur du tableau </span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="va">persos</span>.<span class="at">push</span>(<span class="st">&quot;R2D2&quot;</span>)<span class="op">;</span>       <span class="co">//ajout à la fin</span></a>
+<a class="sourceLine" id="cb29-3" title="3">dernier <span class="op">=</span> <span class="va">persos</span>.<span class="at">pop</span>()<span class="op">;</span>    <span class="co">//retire le dernier</span></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="va">persos</span>.<span class="at">unshift</span>(<span class="st">&quot;ray&quot;</span>)<span class="op">;</span>     <span class="co">//ajout au début</span></a>
+<a class="sourceLine" id="cb29-5" title="5">premier <span class="op">=</span> <span class="va">persos</span>.<span class="at">shift</span>()<span class="op">;</span>  <span class="co">//retire le premier</span></a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="va">persos</span>.<span class="at">indexOf</span>(<span class="st">&quot;solo&quot;</span>)<span class="op">;</span>    <span class="co">//recherche (-1 si introuvable)</span></a>
+<a class="sourceLine" id="cb29-7" title="7"><span class="va">persos</span>.<span class="at">splice</span>(position<span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span><span class="co">//retire un élément par son index</span></a>
+<a class="sourceLine" id="cb29-8" title="8"><span class="va">persos</span>.<span class="at">slice</span>()<span class="op">;</span>            <span class="co">//copie (option: copie partielle)</span></a>
+<a class="sourceLine" id="cb29-9" title="9"><span class="va">persos</span>.<span class="at">every</span>(f)<span class="op">;</span>           <span class="co">//applique la fonction f à chaque élément, renvoie vrai si f renvoie toujours vrai</span></a>
+<a class="sourceLine" id="cb29-10" title="10"><span class="va">persos</span>.<span class="at">filter</span>(f)<span class="op">;</span>          <span class="co">//renvoie un tableau contenant uniquement les éléments d tels que f(d) est vrai</span></a></code></pre></div>
+<h2 id="filtrer-un-tableau">Filtrer un tableau</h2>
+<ul>
+<li>Ne garder que les éléments qui satisfont <code>f</code>:</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb30-1" title="1">persos <span class="op">=</span> <span class="va">persos</span>.<span class="at">filter</span>(d<span class="kw">=&gt;</span> (<span class="va">d</span>.<span class="at">length</span><span class="op">&gt;=</span><span class="dv">5</span>))<span class="op">;</span> </a>
+<a class="sourceLine" id="cb30-2" title="2">    <span class="co">//ne garde que les noms de taille au moins 5</span></a></code></pre></div>
+<ul>
+<li>Supprimer des éléments:</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">function</span> <span class="at">suppressionDansTableau</span>(tableau<span class="op">,</span> critere) <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-2" title="2">    <span class="kw">let</span> suppression<span class="op">=</span><span class="kw">false</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb31-3" title="3">    <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="va">tableau</span>.<span class="at">length</span><span class="dv">-1</span><span class="op">;</span> i<span class="op">&gt;=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">--</span> ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-4" title="4">        <span class="cf">if</span> (<span class="at">critere</span>(tableau[i])) <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-5" title="5">            <span class="va">tableau</span>.<span class="at">splice</span>(i<span class="op">,</span><span class="dv">1</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb31-6" title="6">            suppression<span class="op">=</span><span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb31-7" title="7">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb31-8" title="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb31-9" title="9">    <span class="cf">return</span> suppression<span class="op">;</span></a>
+<a class="sourceLine" id="cb31-10" title="10"><span class="op">}</span></a>
+<a class="sourceLine" id="cb31-11" title="11"><span class="cf">if</span> (<span class="at">suppressionDansTableau</span>(persos<span class="op">,</span> d<span class="kw">=&gt;</span> <span class="va">d</span>.<span class="at">length</span><span class="op">&lt;</span><span class="dv">5</span>)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb31-12" title="12">  <span class="co">//au moins un nom avait une taille &lt; 5 (et a été supprimé)</span></a>
+<a class="sourceLine" id="cb31-13" title="13"><span class="op">}</span></a></code></pre></div>
+<h2 id="références-deux-variables-un-seul-tableau">Références: deux variables, un seul tableau</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">let</span> t<span class="op">=</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="kw">let</span> s<span class="op">=</span>t<span class="op">;</span>   <span class="co">// s et t désignent le même tableau </span></a>
+<a class="sourceLine" id="cb32-3" title="3">s[<span class="dv">0</span>]<span class="op">=</span><span class="dv">9</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="co">// t vaut maintenant [9,2,3]</span></a></code></pre></div>
+<ul>
+<li><code>t</code> <strong>fait référence</strong> à un nouveau tableau (contenant 1,2,3).</li>
+<li>Avec <code>s=t</code>, <code>s</code>fait référence au même tableau que t.</li>
+</ul>
+<p><strong>Intuition:</strong> les tableaux sont potentiellement gros, donc javascript ne les recopie jamais si ce n’est pas demandé explicitement</p>
+<ul>
+<li>Test d’égalité: <code>s==t</code> si <code>s</code> et <code>t</code> font référence au même tableau</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb33-1" title="1">t<span class="op">==</span>[<span class="dv">9</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span>] <span class="co">//faux</span></a>
+<a class="sourceLine" id="cb33-2" title="2">t<span class="op">==</span>s <span class="co">//vrai</span></a></code></pre></div>
+<h2 id="objets-litéraux">Objets litéraux</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">let</span> obiwan<span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb34-2" title="2">    <span class="dt">prenom</span><span class="op">:</span> <span class="st">&quot;Obi-Wan&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb34-3" title="3">    <span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Kenobi&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb34-4" title="4">    <span class="dt">sabre</span><span class="op">:</span> <span class="st">&quot;bleu&quot;</span></a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="op">}</span></a></code></pre></div>
+<p>Comme un tableau, mais les “cases” sont <strong>nommées</strong></p>
+<p>Lexique:</p>
+<ul>
+<li>les cases sont appelées <em>champs</em>, <em>propriétés</em>, <em>entrées</em>,…</li>
+<li>chaque champ a une <em>clef</em> (fixe) et une <em>valeur</em> (variable)</li>
+</ul>
+<h2 id="créer-un-objet">Créer un objet</h2>
+<p>Une paire d’accolades = un nouvel objet</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">let</span> vide <span class="op">=</span> <span class="op">{};</span>         <span class="co">//objet sans aucun champ</span></a>
+<a class="sourceLine" id="cb35-2" title="2"></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="kw">let</span> dimension <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb35-4" title="4"><span class="kw">let</span> couleur <span class="op">=</span> <span class="st">&quot;rouge&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb35-5" title="5"><span class="kw">let</span> carre <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb35-6" title="6">    <span class="dt">x</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span>               <span class="co">//clef &quot;x&quot;, valeur 0</span></a>
+<a class="sourceLine" id="cb35-7" title="7">    <span class="dt">y</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb35-8" title="8">    <span class="dt">largeur</span><span class="op">:</span>dimension<span class="op">,</span> <span class="co">//clef &quot;largeur&quot;, valeur 5</span></a>
+<a class="sourceLine" id="cb35-9" title="9">    <span class="dt">hauteur</span><span class="op">:</span>dimension<span class="op">,</span></a>
+<a class="sourceLine" id="cb35-10" title="10">    couleur<span class="op">,</span>           <span class="co">//clef &quot;couleur&quot;, valeur &quot;rouge&quot;</span></a>
+<a class="sourceLine" id="cb35-11" title="11">    <span class="st">&quot;nom&quot;</span><span class="op">:</span> <span class="st">&quot;carré&quot;</span>     <span class="co">//clef &quot;nom&quot;, valeur &quot;carré&quot;                    </span></a>
+<a class="sourceLine" id="cb35-12" title="12"><span class="op">}</span></a></code></pre></div>
+<h2 id="accès-en-lecture">Accès en lecture</h2>
+<ul>
+<li>Syntaxe “<strong>point</strong>”
+<ul>
+<li>La plus claire</li>
+<li>Restriction : clefs écrite explicitement, sans espaces, sans accents, …</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb36-1" title="1"><span class="at">alert</span>(<span class="va">obiwan</span>.<span class="at">prenom</span>)<span class="op">;</span></a></code></pre></div>
+<ul>
+<li>Syntaxe “<strong>crochets</strong>”
+<ul>
+<li>Moins lisible</li>
+<li>Peut être utilisée avec une variable</li>
+<li>Exactement comme les tableaux</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb37-1" title="1"><span class="at">alert</span>(obiwan[<span class="st">&quot;prenom&quot;</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="kw">let</span> clef <span class="op">=</span> <span class="at">prompt</span>(<span class="st">&quot;Que voulez-vous savoir sur Obi-Wan?&quot;</span>)</a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="at">alert</span>(obiwan[clef])<span class="op">;</span></a></code></pre></div>
+<ul>
+<li>Renvoie <strong>undefined</strong> si la clef n’a pas été définie dans l’objet (sans erreur)</li>
+<li><strong>Erreur</strong> “cannot read property … of undefined” si l’objet <code>obiwan</code> n’a pas été défini.</li>
+</ul>
+<h2 id="accès-en-écriture">Accès en écriture</h2>
+<p><strong>Mêmes syntaxes</strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb38-1" title="1"><span class="va">obiwan</span>.<span class="at">nom</span><span class="op">=</span><span class="st">&quot;Kenobi&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="va">obiwan</span>.<span class="at">metier</span><span class="op">=</span><span class="st">&quot;Jedi&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb38-3" title="3">obiwan[<span class="st">&quot;maître&quot;</span>]<span class="op">=</span><span class="st">&quot;Qui-Gon&quot;</span><span class="op">;</span></a></code></pre></div>
+<ul>
+<li>Nouvelle clef =&gt; la clef est créée</li>
+<li>Clef existante =&gt; la valeur est remplacée</li>
+</ul>
+<h2 id="tester-une-clef">Tester une clef</h2>
+<p>Pour savoir si une clef est présente:</p>
+<ul>
+<li><code>if ("nom" in obiwan) { ...}</code></li>
+<li><code>if (obiwan.nom != undefined) {...}</code></li>
+</ul>
+<p>Utile pour donner une valeur par défaut (cf opérateur contionel):</p>
+<ul>
+<li><code>`Le prénom est: ${"prenom" in obiwan ? obiwan.prenom : "inconnu"} `</code></li>
+</ul>
+<h2 id="imbrication">Imbrication</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">let</span> jedis<span class="op">=</span> [ </a>
+<a class="sourceLine" id="cb39-2" title="2">    <span class="op">{</span><span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Obi-Wan Kenobi&quot;</span><span class="op">,</span> <span class="dt">sabre</span><span class="op">:</span><span class="st">&quot;bleu&quot;</span><span class="op">},</span> </a>
+<a class="sourceLine" id="cb39-3" title="3">    <span class="op">{</span><span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Qi-Gon Jinn&quot;</span><span class="op">,</span> <span class="dt">sabre</span><span class="op">:</span><span class="st">&quot;vert&quot;</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb39-4" title="4">    <span class="op">{</span><span class="dt">nom</span><span class="op">:</span> <span class="st">&quot;Darth Maul&quot;</span><span class="op">,</span> <span class="dt">sabre</span><span class="op">:</span> <span class="st">&quot;double, rouge&quot;</span><span class="op">}</span>        </a>
+<a class="sourceLine" id="cb39-5" title="5">]</a>
+<a class="sourceLine" id="cb39-6" title="6"><span class="kw">let</span> jarjar<span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb39-7" title="7">    <span class="dt">nom</span><span class="op">:</span><span class="st">&quot;Jar-Jar Bins&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb39-8" title="8">    <span class="dt">planete</span><span class="op">:</span><span class="st">&quot;Naboo&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb39-9" title="9">    <span class="dt">apparait_dans_episodes</span><span class="op">:</span> [</a>
+<a class="sourceLine" id="cb39-10" title="10">        <span class="op">{</span> <span class="dt">numero</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">titre</span><span class="op">:</span><span class="st">&quot;La Menace fantôme&quot;</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb39-11" title="11">        <span class="op">{</span> <span class="dt">numero</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">titre</span><span class="op">:</span><span class="st">&quot;L&#39;Attaque des clones&quot;</span><span class="op">},</span></a>
+<a class="sourceLine" id="cb39-12" title="12">        <span class="op">{</span> <span class="dt">numero</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">titre</span><span class="op">:</span><span class="st">&quot;La revanche des Sith&quot;</span><span class="op">}</span></a>
+<a class="sourceLine" id="cb39-13" title="13">    ]</a>
+<a class="sourceLine" id="cb39-14" title="14"><span class="op">}</span></a></code></pre></div>
+<h2 id="json">JSON</h2>
+<p>Format de données pour stocker et partager des informations sous forme de texte, parfaitement adapté aux tableaux et objets JS:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb40-1" title="1">    <span class="va">JSON</span>.<span class="at">stringify</span>(jarjar)</a></code></pre></div>
+<p>donne la chaîne <code>'{"nom":"Jar-Jar Bins","planete":"Naboo","apparait_dans_episodes":[{"numero":1,"titre":"La Menace fantôme"},{"numero":2,"titre":"L'Attaque des clones"},{"numero":3,"titre":"La revanche des Sith"}]}'</code></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb41-1" title="1">    <span class="va">JSON</span>.<span class="at">parse</span>(<span class="st">&#39;{&quot;x&quot;:5,&quot;y&quot;:32}&#39;</span>)</a></code></pre></div>
+<p>donne l’objet <code>{x:5, y:32}</code></p>
+<h1 id="le-format-svg">Le format SVG</h1>
+<h2 id="les-images-svg">Les images SVG</h2>
+<ul>
+<li>image vectorielle avec la même structure qu’un document HTML</li>
+<li>balises spécifiques:
+<ul>
+<li><code>&lt;svg&gt;</code> à la racine de l’image (responsable de la taille et des proportions)</li>
+<li><code>&lt;rect&gt;</code>, <code>&lt;path&gt;</code>, <code>&lt;circle&gt;</code>, <code>&lt;line&gt;</code>, <code>&lt;image&gt;</code> pour les éléments du dessin</li>
+<li><code>&lt;g&gt;</code> pour grouper des éléments</li>
+<li><code>&lt;use&gt;</code> pour recopier une partie du dessin</li>
+<li><code>&lt;marker&gt;</code> pour les pointes de flèches</li>
+</ul></li>
+<li>toutes les coordonnées sont données numériquement</li>
+</ul>
+<h2 id="lélément-svg">L’élément &lt;svg&gt;</h2>
+<ul>
+<li>regroupe tous les éléments de l’image</li>
+<li>fixe les dimensions dans la page (en pixels, en %, etc.)</li>
+<li>fixe le système de coordonnées (dans l’exemple: de 0 à 100 en x et en y)</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">&lt;svg</span><span class="ot"> width=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> height=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> viewbox=</span><span class="st">&quot;0 0 100 100&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb42-2" title="2">    <span class="co">&lt;!-- Mettre les éléments du dessin ici--&gt;</span></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="kw">&lt;/svg&gt;</span></a></code></pre></div>
+<ul>
+<li>Utiliser <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Attribute/preserveAspectRatio">preserveAspectRatio</a> si les proportions largeur/hauteur sont différentes</li>
+</ul>
+<h2 id="dimensions-et-coordonnées">Dimensions et coordonnées</h2>
+<div class="sourceCode" id="cb43"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">&lt;svg</span><span class="ot"> width=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> height=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> viewbox=</span><span class="st">&quot;0 0 100 100&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb43-2" title="2">     <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;33&quot;</span><span class="ot"> cy=</span><span class="st">&quot;50&quot;</span><span class="ot"> r=</span><span class="st">&quot;5&quot;</span><span class="ot"> fill=</span><span class="st">&quot;green&quot;</span> <span class="kw">/&gt;</span> </a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="kw">&lt;/svg&gt;</span></a></code></pre></div>
+<p><img src="images/dimensions.png" width="300" /></p>
+<p>Deux systèmes de coordonnées:</p>
+<ul>
+<li>dimensions de l’objet en fonction de la dimension de la page (<code>width</code> et <code>height</code>)</li>
+<li>coordonnées à l’intérieur de l’image avec viewbox. Les 4 chiffres correspondent à :
+<ul>
+<li>coordonnées du coin en haut à gauche</li>
+<li>largeur et hauteur</li>
+</ul></li>
+</ul>
+<h2 id="formes-de-base">Formes de base</h2>
+<p>Documentation complète : <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Tutorial/Basic_Shapes#circle">cercles</a>, <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Tutorial/Basic_Shapes#rectangle">rectangles</a>, <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Tutorial/Basic_Shapes#line">lignes</a>, <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Tutorial/Paths">chemins</a>, <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Element/text">texte</a>, <a href="https://developer.mozilla.org/fr/docs/Web/SVG/Element/image">images</a>.</p>
+<div>
+<svg width="50vmin" height="50vmin" viewbox="0 0 100 100">
+<circle cx="15" cy="15" r="5" fill="red" /> <rect x="80" y="0" width="20" height="10" 
+        fill="purple" /> <line x1="0" y1="0" x2="100" y2="100" 
+         style="stroke:blue;stroke-width:2" /> <path id="smiley" 
+        style="stroke:green; stroke-width:1;
+               fill:yellow; fill-opacity:.8"
+         d="M50,10 A40,40,1,1,1,50,90 A40,40,1,1,1,50,10 
+            M30,40 Q36,35,42,40 M58,40 Q64,35,70,40 M30,60 
+            Q50,75,70,60 Q50,75,30,60" /> <text x="0" y="90" fill="red" font-size="8"> Hello! </text>
+</svg>
+</div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">&lt;svg</span><span class="ot"> width=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> height=</span><span class="st">&quot;50vmin&quot;</span><span class="ot"> viewbox=</span><span class="st">&quot;0 0 100 100&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb44-2" title="2">   <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;15&quot;</span><span class="ot"> cy=</span><span class="st">&quot;15&quot;</span><span class="ot"> r=</span><span class="st">&quot;5&quot;</span><span class="ot"> fill=</span><span class="st">&quot;red&quot;</span> <span class="kw">/&gt;</span> </a>
+<a class="sourceLine" id="cb44-3" title="3">   <span class="kw">&lt;rect</span><span class="ot"> x=</span><span class="st">&quot;80&quot;</span><span class="ot"> y=</span><span class="st">&quot;0&quot;</span><span class="ot"> width=</span><span class="st">&quot;20&quot;</span><span class="ot"> height=</span><span class="st">&quot;10&quot;</span> </a>
+<a class="sourceLine" id="cb44-4" title="4"><span class="ot">        fill=</span><span class="st">&quot;purple&quot;</span> <span class="kw">/&gt;</span> </a>
+<a class="sourceLine" id="cb44-5" title="5">   <span class="kw">&lt;line</span><span class="ot"> x1=</span><span class="st">&quot;0&quot;</span><span class="ot"> y1=</span><span class="st">&quot;0&quot;</span><span class="ot"> x2=</span><span class="st">&quot;100&quot;</span><span class="ot"> y2=</span><span class="st">&quot;100&quot;</span> </a>
+<a class="sourceLine" id="cb44-6" title="6"><span class="ot">         style=</span><span class="st">&quot;stroke:blue;stroke-width:2&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb44-7" title="7">   <span class="kw">&lt;path</span><span class="ot"> id=</span><span class="st">&quot;smiley&quot;</span> </a>
+<a class="sourceLine" id="cb44-8" title="8"><span class="ot">        style=</span><span class="st">&quot;stroke:green; stroke-width:1;</span></a>
+<a class="sourceLine" id="cb44-9" title="9"><span class="st">               fill:yellow; fill-opacity:.8&quot;</span></a>
+<a class="sourceLine" id="cb44-10" title="10"><span class="ot">         d=</span><span class="st">&quot;M50,10 A40,40,1,1,1,50,90 A40,40,1,1,1,50,10 </span></a>
+<a class="sourceLine" id="cb44-11" title="11"><span class="st">            M30,40 Q36,35,42,40 M58,40 Q64,35,70,40 M30,60 </span></a>
+<a class="sourceLine" id="cb44-12" title="12"><span class="st">            Q50,75,70,60 Q50,75,30,60&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb44-13" title="13">   <span class="kw">&lt;text</span><span class="ot"> x=</span><span class="st">&quot;0&quot;</span><span class="ot"> y=</span><span class="st">&quot;90&quot;</span><span class="ot"> fill=</span><span class="st">&quot;red&quot;</span><span class="ot"> font-size=</span><span class="st">&quot;8&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb44-14" title="14">        Hello! <span class="kw">&lt;/text&gt;</span></a>
+<a class="sourceLine" id="cb44-15" title="15"><span class="kw">&lt;/svg&gt;</span></a></code></pre></div>
+<h2 id="groupes-et-transformations">Groupes et transformations</h2>
+<ul>
+<li>pour grouper des éléments qui doivent rester liés</li>
+<li>possibilité de donner des identifiants/classes pour faciliter les sélections</li>
+<li>transform: translations, rotations, échelle</li>
+<li>transform également possible sur des éléments simples (mais parfois contre-intuitif)</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">&lt;g</span><span class="ot"> id=</span><span class="st">&quot;symbole&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(50,50)&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb45-2" title="2">    <span class="kw">&lt;g</span><span class="ot"> transform=</span><span class="st">&quot;scale(1.414)&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb45-3" title="3">        <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;0&quot;</span><span class="ot"> cy=</span><span class="st">&quot;0&quot;</span><span class="ot"> r=</span><span class="st">&quot;20&quot;</span><span class="ot"> fill=</span><span class="st">&quot;blue&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb45-4" title="4">    <span class="kw">&lt;/g&gt;</span></a>
+<a class="sourceLine" id="cb45-5" title="5">    <span class="kw">&lt;g</span><span class="ot"> transform=</span><span class="st">&quot;rotate(45)&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb45-6" title="6">        <span class="kw">&lt;rect</span><span class="ot"> x=</span><span class="st">&quot;-20&quot;</span><span class="ot"> y=</span><span class="st">&quot;-20&quot;</span><span class="ot"> width=</span><span class="st">&quot;40&quot;</span><span class="ot"> height=</span><span class="st">&quot;40&quot;</span><span class="ot"> fill=</span><span class="st">&quot;green&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb45-7" title="7">    <span class="kw">&lt;/g&gt;</span></a>
+<a class="sourceLine" id="cb45-8" title="8">    <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;0&quot;</span><span class="ot"> cy=</span><span class="st">&quot;0&quot;</span><span class="ot"> r=</span><span class="st">&quot;20&quot;</span><span class="ot"> fill=</span><span class="st">&quot;red&quot;</span> <span class="kw">/&gt;</span> </a>
+<a class="sourceLine" id="cb45-9" title="9"><span class="kw">&lt;/g&gt;</span></a></code></pre></div>
+<div>
+<svg width="50vmin" height="50vmin" viewbox="0 0 100 100">
+<g id="symbole" transform="translate(50,50)"> <g transform="scale(1.414)"> <circle cx="0" cy="0" r="20" fill="blue" /> </g> <g transform="rotate(45)"> <rect x="-20" y="-20" width="40" height="40" fill="green" /> </g> <circle cx="0" cy="0" r="20" fill="red" /> </g>
+</svg>
+</div>
+<h2 id="réutilisation-déléments">Réutilisation d’éléments</h2>
+<ul>
+<li>balise defs pour définir des formes (avec identifiants)</li>
+<li>balise use avec référence à la formes</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">&lt;defs&gt;</span></a>
+<a class="sourceLine" id="cb46-2" title="2">    <span class="kw">&lt;g</span><span class="ot"> id=</span><span class="st">&quot;motif&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb46-3" title="3">        <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;0&quot;</span><span class="ot"> cy=</span><span class="st">&quot;0&quot;</span><span class="ot"> r=</span><span class="st">&quot;10&quot;</span><span class="ot"> fill=</span><span class="st">&quot;blue&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-4" title="4">        <span class="kw">&lt;circle</span><span class="ot"> cx=</span><span class="st">&quot;4&quot;</span><span class="ot"> cy=</span><span class="st">&quot;0&quot;</span><span class="ot"> r=</span><span class="st">&quot;6&quot;</span><span class="ot"> fill=</span><span class="st">&quot;white&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-5" title="5">    <span class="kw">&lt;/g&gt;</span></a>
+<a class="sourceLine" id="cb46-6" title="6"><span class="kw">&lt;/defs&gt;</span></a>
+<a class="sourceLine" id="cb46-7" title="7"><span class="kw">&lt;use</span><span class="ot"> href=</span><span class="st">&quot;#motif&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(25,25)&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-8" title="8"><span class="kw">&lt;use</span><span class="ot"> href=</span><span class="st">&quot;#motif&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(75,25)rotate(90)&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-9" title="9"><span class="kw">&lt;use</span><span class="ot"> href=</span><span class="st">&quot;#motif&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(25,75)scale(.4)&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-10" title="10"><span class="kw">&lt;use</span><span class="ot"> href=</span><span class="st">&quot;#motif&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(75,75)rotate(180)&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb46-11" title="11"><span class="kw">&lt;use</span><span class="ot"> href=</span><span class="st">&quot;#motif&quot;</span><span class="ot"> transform=</span><span class="st">&quot;translate(50,50)scale(2)&quot;</span> <span class="kw">/&gt;</span></a></code></pre></div>
+<div>
+<svg width="50vmin" height="50vmin" viewbox="0 0 100 100">
+<defs> <g id="motif"> <circle cx="0" cy="0" r="10" fill="blue" /> <circle cx="4" cy="0" r="6" fill="white" /> </g> </defs> <use href="#motif" transform="translate(25,25)" /> <use href="#motif" transform="translate(75,25)rotate(90)" /> <use href="#motif" transform="translate(25,75)scale(.4)" /> <use href="#motif" transform="translate(75,75)rotate(180)" /> <use href="#motif" transform="translate(50,50)scale(2)" />
+</svg>
+</div>
+<h2 id="pointes-de-flèches">Pointes de flèches</h2>
+<ul>
+<li>On définit une pointe avec <strong>&lt;marker&gt;</strong> (dans les définitions)</li>
+<li>On utilise une pointe avec <strong>marker-start</strong>, <strong>marker-middle</strong>, <strong>marker-end</strong> dans les lignes et chemins</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb47-1" title="1">    <span class="kw">&lt;defs&gt;</span></a>
+<a class="sourceLine" id="cb47-2" title="2">        <span class="kw">&lt;marker</span><span class="ot"> id=</span><span class="st">&quot;arrow&quot;</span><span class="ot"> viewBox=</span><span class="st">&quot;0 0 10 10&quot;</span><span class="ot"> refX=</span><span class="st">&quot;5&quot;</span><span class="ot"> refY=</span><span class="st">&quot;5&quot;</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="ot">                markerWidth=</span><span class="st">&quot;3&quot;</span><span class="ot"> markerHeight=</span><span class="st">&quot;3&quot;</span><span class="ot"> orient=</span><span class="st">&quot;auto&quot;</span> <span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb47-4" title="4">                <span class="kw">&lt;path</span><span class="ot"> d=</span><span class="st">&quot;M 0 0 L 10 5 L 0 10 z&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb47-5" title="5">        <span class="kw">&lt;/marker&gt;</span></a>
+<a class="sourceLine" id="cb47-6" title="6">    <span class="kw">&lt;/defs&gt;</span></a>
+<a class="sourceLine" id="cb47-7" title="7">    <span class="kw">&lt;line</span><span class="ot"> x1=</span><span class="st">20</span><span class="ot"> y1=</span><span class="st">5</span><span class="ot"> x2=</span><span class="st">80</span><span class="ot"> y2=</span><span class="st">5</span><span class="ot"> marker-end=</span><span class="st">&quot;url(#arrow)&quot;</span><span class="ot"> stroke=</span><span class="st">&quot;black&quot;</span><span class="kw">/&gt;</span>    </a></code></pre></div>
+<div>
+<svg width="50vmin" height="5vmin" viewbox="0 0 100 10">
+<defs> <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                markerWidth="3" markerHeight="3" orient="auto" > <path d="M 0 0 L 10 5 L 0 10 z" /> </marker> </defs> <line x1=20 y1=5 x2=80 y2=5 marker-end="url(#arrow)" stroke="black"/>
+</svg>
+</div>
+<h1 id="d3.js">D3.js</h1>
+<h2 id="principe-1">Principe</h2>
+<ul>
+<li>Inclure le script en préembule (version 6 utilisée dans ce cours),</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://d3js.org/d3.v6.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div>
+<p>ou <a href="d3.js">télécharger le fichier d3.js</a> en local pour éviter les problèmes de réseau</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;d3.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div>
+<ul>
+<li><p>Donne accès à un objet, <em>d3</em></p></li>
+<li><p>Pour manipuler plus facilement le DOM (ajout d’éléments, modifier les attributs, les styles, …)</p></li>
+<li><p>Pour associer les données (en mémoire) et les éléments DOM (visibles)</p></li>
+</ul>
+<h2 id="sélection">Sélection</h2>
+<ul>
+<li>Sélectionner un objet</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">let</span> titre <span class="op">=</span> <span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#div.titre&quot;</span>)<span class="op">;</span> </a></code></pre></div>
+<ul>
+<li>Sélectionner un ensemble</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">let</span> images <span class="op">=</span> <span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;img&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="styles">Styles</h2>
+<ul>
+<li>Utiliser <code>.style( nom_du_style, nouvelle_valeur )</code></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb52-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;div&quot;</span>)</a>
+<a class="sourceLine" id="cb52-2" title="2">    .<span class="at">style</span>(<span class="st">&quot;background-color&quot;</span><span class="op">,</span><span class="st">&quot;red&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#titre&quot;</span>)</a>
+<a class="sourceLine" id="cb52-4" title="4">    .<span class="at">style</span>(<span class="st">&quot;font-size&quot;</span><span class="op">,</span> <span class="st">&quot;20px&quot;</span>)</a>
+<a class="sourceLine" id="cb52-5" title="5">    .<span class="at">style</span>(<span class="st">&quot;color&quot;</span><span class="op">,</span> <span class="st">&quot;blue&quot;</span>)<span class="op">;</span>    </a></code></pre></div>
+<ul>
+<li><p>idem pour tous les styles SVG: stroke, stroke-width, fill, …</p></li>
+<li><p>utiliser un seul paramètre pour <strong>récupérer</strong> la valeur du style d’un objet</p></li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">let</span> couleur <span class="op">=</span> <span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#boite&quot;</span>)</a>
+<a class="sourceLine" id="cb53-2" title="2">    .<span class="at">style</span>(<span class="st">&quot;background-color&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="attributs-et-propriétés">Attributs et propriétés</h2>
+<p><strong>.attr</strong> pour éditer les attributs html: identifiants, classes, …</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb54-1" title="1"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;body&gt;div&quot;</span>)</a>
+<a class="sourceLine" id="cb54-2" title="2">    .<span class="at">attr</span>(<span class="st">&quot;id&quot;</span><span class="op">,</span> <span class="st">&quot;premier_div&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb54-3" title="3">    </a>
+<a class="sourceLine" id="cb54-4" title="4"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;.boite&gt;div&quot;</span>)</a>
+<a class="sourceLine" id="cb54-5" title="5">    .<span class="at">attr</span>(<span class="st">&quot;class&quot;</span><span class="op">,</span> <span class="st">&quot;sous_boite&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p><strong>.property</strong> pour récupérer la valeur des inputs</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">let</span> nom <span class="op">=</span> <span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#nom&quot;</span>)</a>
+<a class="sourceLine" id="cb55-2" title="2">    .<span class="at">property</span>(<span class="st">&quot;value&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb55-3" title="3"></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;#caseACocher&quot;</span>)</a>
+<a class="sourceLine" id="cb55-5" title="5">    .<span class="at">property</span>(<span class="st">&quot;checked&quot;</span><span class="op">,</span> <span class="kw">true</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="textehtml">Texte/HTML</h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb56-1" title="1"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;body&gt;div&quot;</span>)</a>
+<a class="sourceLine" id="cb56-2" title="2">    .<span class="at">text</span>(<span class="st">&quot;bonjour&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb56-3" title="3">    </a>
+<a class="sourceLine" id="cb56-4" title="4"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;.boite&gt;div&quot;</span>)</a>
+<a class="sourceLine" id="cb56-5" title="5">    .<span class="at">html</span>(<span class="st">&quot;&lt;b&gt;hop&lt;/b&gt;&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="ajouter-un-élément">Ajouter un élément</h2>
+<div class="sourceCode" id="cb57"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb57-1" title="1"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#conatainer&quot;</span>)</a>
+<a class="sourceLine" id="cb57-2" title="2">    .<span class="at">append</span>(<span class="st">&quot;div&quot;</span>)</a>
+<a class="sourceLine" id="cb57-3" title="3">    .<span class="at">text</span>(<span class="st">&quot;bonjour&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="chaînes-dopérations">Chaînes d’opérations</h2>
+<p>La majorité des fonctions d3 renvoient la même sélection: on peut les <em>chaîner</em> (on place une fonction par ligne, sans point-virgule)</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb58-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;div&quot;</span>)                    </a>
+<a class="sourceLine" id="cb58-2" title="2">           <span class="co">//selection de tous les divs</span></a>
+<a class="sourceLine" id="cb58-3" title="3">    .<span class="at">attr</span>(<span class="st">&quot;class&quot;</span><span class="op">,</span> <span class="st">&quot;AA&quot;</span>)               <span class="co">//idem</span></a>
+<a class="sourceLine" id="cb58-4" title="4">    .<span class="at">style</span>(<span class="st">&quot;background-color&quot;</span><span class="op">,</span> <span class="st">&quot;blue&quot;</span>) <span class="co">//idem</span></a>
+<a class="sourceLine" id="cb58-5" title="5">    .<span class="at">selectAll</span>(<span class="st">&quot;span&quot;</span>)                 </a>
+<a class="sourceLine" id="cb58-6" title="6">           <span class="co">//selection de tous les spans dans les divs</span></a>
+<a class="sourceLine" id="cb58-7" title="7">    .<span class="at">attr</span>(<span class="st">&quot;class&quot;</span><span class="op">,</span> <span class="st">&quot;BB&quot;</span>)               <span class="co">//idem</span></a>
+<a class="sourceLine" id="cb58-8" title="8">    .<span class="at">append</span>(<span class="st">&quot;b&quot;</span>)                       </a>
+<a class="sourceLine" id="cb58-9" title="9">           <span class="co">//sélection de tous les &quot;&lt;b&gt;&quot; créés </span></a>
+<a class="sourceLine" id="cb58-10" title="10">    .<span class="at">text</span>(<span class="st">&quot;bonjour&quot;</span>)                   <span class="co">//idem</span></a></code></pre></div>
+<h2 id="evènements">Evènements</h2>
+<p>On donne une fonction qui sera appelée chaque fois que l’évènement se produit</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb59-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;div&quot;</span>)</a>
+<a class="sourceLine" id="cb59-2" title="2">    .<span class="at">on</span>(<span class="st">&quot;click&quot;</span><span class="op">,</span> <span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb59-3" title="3">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;clicked a div&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb59-4" title="4">        <span class="va">d3</span>.<span class="at">select</span>(<span class="kw">this</span>)</a>
+<a class="sourceLine" id="cb59-5" title="5">            .<span class="at">style</span>(<span class="st">&quot;background-color&quot;</span><span class="op">,</span><span class="st">&quot;red&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb59-6" title="6">    <span class="op">}</span>)</a></code></pre></div>
+<ul>
+<li><a href="https://github.com/d3/d3-selection/blob/main/README.md#handling-events">Documentation</a></li>
+<li><strong>this</strong> fait référence à l’élément concerné</li>
+<li>la fonction anonyme peut prendre un paramètre <strong>event</strong> contenant les informations sur l’évènement</li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb60-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;div&quot;</span>)</a>
+<a class="sourceLine" id="cb60-2" title="2">    .<span class="at">on</span>(<span class="st">&quot;click&quot;</span><span class="op">,</span> <span class="kw">function</span>(event<span class="op">,</span> d)<span class="op">{</span></a>
+<a class="sourceLine" id="cb60-3" title="3">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;clicked a div, all details here:&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb60-4" title="4">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;event: &quot;</span><span class="op">,</span> event)<span class="op">;</span></a>
+<a class="sourceLine" id="cb60-5" title="5">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;data: &quot;</span><span class="op">,</span> d)<span class="op">;</span>        </a>
+<a class="sourceLine" id="cb60-6" title="6">    <span class="op">}</span>)</a></code></pre></div>
+<h2 id="types-dévènements">Types d’évènements</h2>
+<p><strong>mouvements de la souris</strong></p>
+<ul>
+<li><em>mouseover, mouseout, mouseenter, mouseleave, mousemove</em></li>
+</ul>
+<p><strong>boutons de la souris:</strong></p>
+<ul>
+<li><em>mousedown, mouseup, click, dblclick</em></li>
+</ul>
+<p><strong>clavier</strong></p>
+<ul>
+<li><em>keydown, keypress, keyup</em></li>
+</ul>
+<p><strong>et aussi…</strong></p>
+<ul>
+<li><em>submit</em> (pour les forms), <em>change</em> (pour les inputs), …</li>
+</ul>
+<p><strong>informations dans event</strong></p>
+<ul>
+<li>(souris) La position du pointeur est connue avec <code>d3.pointer(event)</code> (tableau de deux coordonnées, <code>[x,y]</code>)</li>
+<li>(souris) Le bouton concerné est connu avec <code>event.buttons</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons">documentation</a>, <code>event.buttons==1</code> pour tester le bouton gauche)</li>
+<li>(clavier) La touche est connue avec <code>event.key</code> (<a href="https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key">documentation et exemple avec les flèches</a>)</li>
+<li>(tous) Utiliser <code>console.log(event)</code> pour voir toutes les informations de l’évènement</li>
+</ul>
+<h2 id="associer-les-données">Associer les données</h2>
+<p>Il faut:</p>
+<ul>
+<li>un tableau de données e.g. <strong>liste=[5,3,4]</strong></li>
+<li>un sélecteur e.g. <strong>div.elem</strong></li>
+</ul>
+<p>Associer une donnée à chaque élément:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">let</span> lien <span class="op">=</span> <span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#container&quot;</span>)            </a>
+<a class="sourceLine" id="cb61-2" title="2">            .<span class="at">selectAll</span>(<span class="st">&quot;div.elem&quot;</span>)</a>
+<a class="sourceLine" id="cb61-3" title="3">            .<span class="at">data</span>(liste)      </a></code></pre></div>
+<p><a href="extras/d3_data.pdf">Slides sur le fonctionnement du .data()</a></p>
+<h2 id="autant-déléments-que-de-données">Autant d’éléments que de données</h2>
+<p>Ajouter des éléments manquants ou retirer des éléments en trop</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb62-1" title="1"><span class="va">lien</span>.<span class="at">join</span>(<span class="st">&quot;div&quot;</span>)   <span class="co">//ajoute un div au container </span></a>
+<a class="sourceLine" id="cb62-2" title="2">                   <span class="co">//pour chaque donnée restante,</span></a>
+<a class="sourceLine" id="cb62-3" title="3">                   <span class="co">//ou retire les éléments superflus</span></a>
+<a class="sourceLine" id="cb62-4" title="4">    .<span class="at">attr</span>(<span class="st">&quot;class&quot;</span><span class="op">,</span><span class="st">&quot;elem&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="utiliser-les-données">Utiliser les données</h2>
+<p><code>.style</code>, <code>.attr</code>, etc. peuvent recevoir une <strong>fonction</strong> prenant les données associées en paramètre</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb63-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;div.elem&quot;</span>)</a>
+<a class="sourceLine" id="cb63-2" title="2">    .<span class="at">style</span>(<span class="st">&quot;width&quot;</span><span class="op">,</span> d<span class="kw">=&gt;</span> <span class="dv">10</span><span class="op">*</span>d)<span class="op">;</span> </a>
+<a class="sourceLine" id="cb63-3" title="3">    <span class="co">//largeur = 10* la donnée stockée</span></a>
+<a class="sourceLine" id="cb63-4" title="4">    .<span class="at">text</span>(d<span class="kw">=&gt;</span> <span class="vs">`valeur : </span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">`</span>)</a>
+<a class="sourceLine" id="cb63-5" title="5">    <span class="co">//e.g. &quot;valeur : 5&quot;</span></a></code></pre></div>
+<h2 id="identifiants-sur-les-données">Identifiants sur les données</h2>
+<p>Si les données ont un identifiant unique, d3 peut les utiliser au moment d’associer une même donnée à un même objet:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb64-1" title="1"><span class="kw">let</span> tableau<span class="op">=</span>[<span class="op">{</span><span class="dt">id</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">nom</span><span class="op">:</span><span class="st">&quot;riri&quot;</span><span class="op">},</span> </a>
+<a class="sourceLine" id="cb64-2" title="2">             <span class="op">{</span><span class="dt">id</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span> <span class="dt">nom</span><span class="op">:</span><span class="st">&quot;fifi&quot;</span><span class="op">},</span> </a>
+<a class="sourceLine" id="cb64-3" title="3">             <span class="op">{</span><span class="dt">id</span><span class="op">:</span><span class="dv">3</span><span class="op">,</span> <span class="dt">nom</span><span class="op">:</span><span class="st">&quot;loulou&quot;</span><span class="op">}</span>]</a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#container&quot;</span>)            </a>
+<a class="sourceLine" id="cb64-5" title="5">    .<span class="at">selectAll</span>(<span class="st">&quot;div.elem&quot;</span>)</a>
+<a class="sourceLine" id="cb64-6" title="6">    .<span class="at">data</span>(tableau<span class="op">,</span> d<span class="kw">=&gt;</span><span class="va">d</span>.<span class="at">id</span>)<span class="op">;</span>   </a>
+<a class="sourceLine" id="cb64-7" title="7"><span class="va">tableau</span>.<span class="at">shift</span>()<span class="op">;</span> <span class="co">//retire le premier élément , &quot;riri&quot;</span></a>
+<a class="sourceLine" id="cb64-8" title="8"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#container&quot;</span>)            </a>
+<a class="sourceLine" id="cb64-9" title="9">    .<span class="at">selectAll</span>(<span class="st">&quot;div.elem&quot;</span>)</a>
+<a class="sourceLine" id="cb64-10" title="10">    .<span class="at">data</span>(tableau<span class="op">,</span> d<span class="kw">=&gt;</span><span class="va">d</span>.<span class="at">id</span>)<span class="op">;</span>  </a>
+<a class="sourceLine" id="cb64-11" title="11">        <span class="co">//le premier élément html n&#39;est plus associé, il est placé dans le exit()            </span></a></code></pre></div>
+<h2 id="d3-et-inputs">d3 et inputs</h2>
+<p>Avec les éléments <code>&lt;input&gt;</code> (case de texte, choix d’un nombre, …), <code>&lt;texarea&gt;</code> et <code>&lt;select&gt;</code>:</p>
+<ul>
+<li><p>Utiliser <code>.property("value")</code> pour lire/écrire la valeur (<code>.property("checked")</code> pour les cases à cocher)</p></li>
+<li><p>Utiliser <code>.on("change", function(){})</code> pour détecter une modification</p></li>
+</ul>
+<h2 id="animations">Animations</h2>
+<p>Utiliser <code>.transition()</code> pour appliquer une transition douce aux styles et attributs</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb65-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;circle&quot;</span>)</a>
+<a class="sourceLine" id="cb65-2" title="2">    .<span class="at">transition</span>()     </a>
+<a class="sourceLine" id="cb65-3" title="3">    .<span class="at">attr</span>(<span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></a></code></pre></div>
+<ul>
+<li><code>.duration</code> fixe le délai, <code>.ease</code> donne la vitesse de transition (plus rapide au début, à la fin, …)</li>
+</ul>
+<div class="sourceCode" id="cb66"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb66-1" title="1"><span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">&quot;circle&quot;</span>)</a>
+<a class="sourceLine" id="cb66-2" title="2">    .<span class="at">transition</span>()     </a>
+<a class="sourceLine" id="cb66-3" title="3">    .<span class="at">ease</span>(<span class="va">d3</span>.<span class="at">easeLinear</span>)</a>
+<a class="sourceLine" id="cb66-4" title="4">    .<span class="at">duration</span>(<span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb66-5" title="5">    .<span class="at">attr</span>(<span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></a></code></pre></div>
+<ul>
+<li><strong>Liens:</strong> <a href="https://github.com/d3/d3-transition">La documentation</a> et <a href="https://www.datavis.fr/d3js/transition">un tutoriel</a></li>
+</ul>
+<h1 id="points-divers">Points divers</h1>
+<h2 id="nombres-aléatoires">Nombres aléatoires</h2>
+<ul>
+<li><code>Math.random()</code> renvoie un <strong>nombre à virgule</strong> aléatoire entre 0 et 1</li>
+<li>La fonction ci-dessous renvoie un <strong>entier</strong> aléatoire entre 0 et max-1</li>
+</ul>
+<div class="sourceCode" id="cb67"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">function</span> <span class="at">entierAlea</span>(max) <span class="op">{</span></a>
+<a class="sourceLine" id="cb67-2" title="2">    <span class="cf">return</span> <span class="va">Math</span>.<span class="at">floor</span>(<span class="va">Math</span>.<span class="at">random</span>() <span class="op">*</span> max)<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-3" title="3"><span class="op">}</span></a></code></pre></div>
+<h2 id="chronomètres">Chronomètres</h2>
+<ul>
+<li><p>On mesure le temps qui passe avec <code>Date.now()</code> (milisecondes écoulées depuis un temps 0 arbitraire)</p></li>
+<li><code>setTimeout</code> pour temporiser un appel de fonction</li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb68-1" title="1"><span class="at">setTimeout</span>(<span class="kw">function</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb68-2" title="2">    <span class="at">alert</span>(<span class="st">&quot;les oeufs sont cuits!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="op">},</span> <span class="dv">3000</span>)<span class="op">;</span></a></code></pre></div>
+<ul>
+<li><p>Utiliser setTimeout avec 0 milisecondes pour appeler la fonction quand le navigateur aura terminé tout ce qu’il est en train d’exécuter</p></li>
+<li><code>setInterval</code> pour répéter un appel de fonction à interval régulier</li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb69-1" title="1"><span class="at">setInterval</span>(<span class="kw">function</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb69-2" title="2">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;tic-tac&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="op">},</span> <span class="dv">1000</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="géométrie">Géométrie</h2>
+<ul>
+<li>Utiliser <code>Math.atan2</code> Pour transformer des coordonnées en angle (radians), ou la fonction ci-dessous pour avoir des degrés (utilisés dans <code>rotate()</code>):</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb70-1" title="1"><span class="kw">function</span> <span class="at">angle</span>(x<span class="op">,</span>y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-2" title="2">    <span class="cf">return</span> <span class="va">Math</span>.<span class="at">atan2</span>(y<span class="op">,</span>x)<span class="op">*</span><span class="dv">180</span>/<span class="va">Math</span>.<span class="at">PI</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="op">}</span></a></code></pre></div>
+<ul>
+<li>Calcul de distance entre deux objets contentant chacun des champs <code>x</code>et <code>y</code>:</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">function</span> <span class="at">distance</span>(a<span class="op">,</span>b) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-2" title="2">    <span class="kw">let</span> dx<span class="op">=</span><span class="va">a</span>.<span class="at">x</span><span class="op">-</span><span class="va">b</span>.<span class="at">x</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb71-3" title="3">    <span class="kw">let</span> dy<span class="op">=</span><span class="va">a</span>.<span class="at">y</span><span class="op">-</span><span class="va">b</span>.<span class="at">y</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb71-4" title="4">    <span class="cf">return</span> <span class="va">Math</span>.<span class="at">sqrt</span>(dx<span class="op">*</span>dx<span class="op">+</span>dy<span class="op">*</span>dy)<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-5" title="5"><span class="op">}</span></a></code></pre></div>
+<h2 id="axes-gradués">Axes gradués</h2>
+<p>D3 a un système très riche pour gérer les axes et les graduations</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">const</span> axes <span class="op">=</span> <span class="va">d3</span>.<span class="at">axisLeft</span>(<span class="va">d3</span>.<span class="at">scaleLinear</span>()</a>
+<a class="sourceLine" id="cb72-2" title="2">            .<span class="at">domain</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">5000</span>]) <span class="co">// la plage de valeurs possibles </span></a>
+<a class="sourceLine" id="cb72-3" title="3">            .<span class="at">range</span>([<span class="dv">0</span><span class="op">,</span>  <span class="dv">100</span>])) <span class="co">// les coordonnées du début et de fin de l&#39;axe</span></a>
+<a class="sourceLine" id="cb72-4" title="4">        .<span class="at">ticks</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb72-5" title="5">        .<span class="at">tickFormat</span>(<span class="va">d3</span>.<span class="at">format</span>(<span class="st">&#39;d&#39;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb72-6" title="6"></a>
+<a class="sourceLine" id="cb72-7" title="7"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;#parent&quot;</span>)</a>
+<a class="sourceLine" id="cb72-8" title="8">        .<span class="at">append</span>(<span class="st">&quot;g&quot;</span>)</a>
+<a class="sourceLine" id="cb72-9" title="9">        .<span class="at">call</span>(axes)</a></code></pre></div>
+<p><a href="https://observablehq.com/@d3/axis-ticks">Exemple de placement des graduations</a></p>
+</body>
+</html>
