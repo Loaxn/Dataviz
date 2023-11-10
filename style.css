@@ -7,7 +7,7 @@
 body{
 /* background: rgb(8, 120, 151); */
 background: linear-gradient(90deg,rgb(77, 139, 156) 41%, rgb(0, 212, 255) 100%);
-
+margin: 0;
 height: 100vh; /*This centers vertically within the viewport*/
 margin: 0; /* Remove default margin to center horizontally */
 font-family: 'Odibee Sans', sans-serif;
@@ -15,13 +15,28 @@ font-family: 'Odibee Sans', sans-serif;
 
 /* ALEX  */
 
+
+
 .header { 
 
-  width: 100%;
-  height: 100vh; /* ou 100% pour occuper toute la hauteur de son parent */
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ padding: 20px 0;
+ text-align: center; /* Ajout de cette ligne pour centrer le header */
+
   
 
 }
+
+main {
+
+  width: 100%;
+  padding: 120px 0 0;
+
+}
+
 
 .skeleton { 
 	animation-name: floating;
@@ -46,7 +61,6 @@ svg {
       }
 
 .map{
-  background-color: #EBF3F3;
   margin-top: 20%;
   
 }
