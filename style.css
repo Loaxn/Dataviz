@@ -102,7 +102,7 @@ svg {
   height: 100%;
   position: absolute;
   left: 0;
-  top: 36%;
+  top: 29%;
   -webkit-transform: scaleX(-1);
 transform: scaleX(-1);
 }
