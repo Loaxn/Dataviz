@@ -19,12 +19,9 @@ font-family: 'Odibee Sans', sans-serif;
 
 .header { 
 
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- padding: 20px 0;
- text-align: center; /* Ajout de cette ligne pour centrer le header */
+
+ text-align: center;
+ 
 
   
 
@@ -37,6 +34,10 @@ main {
 
 }
 
+.skeleton{
+  width: 60%;
+ 
+}
 
 .skeleton { 
 	animation-name: floating;
