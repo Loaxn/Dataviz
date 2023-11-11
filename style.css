@@ -79,7 +79,6 @@ svg {
 .map__image path , polygon{
   fill: #5797A0;
   transition: fill 0.3s;
-  /* stroke: beige; */
   stroke-width: 0.5;
 }
 
@@ -93,7 +92,7 @@ svg {
 .map__image polygon:hover{
   fill: #9D1815;
   transition: fill 0.3s;
-  stroke:#EBF3F3;
+  stroke:#9D1815;
 
 }
 
