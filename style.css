@@ -30,7 +30,7 @@ font-family: 'Odibee Sans', sans-serif;
 main {
 
   width: 100%;
-  padding: 120px 0 0;
+  background-color: aliceblue;
 
 }
 
@@ -62,8 +62,7 @@ svg {
       }
 
 .map{
-  margin-top: 20%;
-  
+  margin-top: 0;
 }
 
 .map h1{
