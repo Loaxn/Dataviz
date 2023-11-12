@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr("cx", function (d) { return echelleX(d.nom) + echelleX.bandwidth() / 2; })
         .attr("cy", function (d) { return echelleY(d.valeur); })
         .attr("r", 4) // rayon du cercle
+        .attr("fill", "white")
 
    
 });
