@@ -7,13 +7,39 @@
 body{
 /* background: rgb(8, 120, 151); */
 background: linear-gradient(90deg,rgb(77, 139, 156) 41%, rgb(0, 212, 255) 100%);
-
+margin: 0;
 height: 100vh; /*This centers vertically within the viewport*/
 margin: 0; /* Remove default margin to center horizontally */
 font-family: 'Odibee Sans', sans-serif;
 }
 
 /* ALEX  */
+
+
+
+.header { 
+
+
+ text-align: center;
+ 
+
+  
+
+}
+
+main {
+
+  width: 100%;
+  
+
+
+}
+
+.skeleton{
+  width: 60%;
+ 
+}
+
 .skeleton { 
 	animation-name: floating;
 	animation-duration: 3s;
@@ -32,14 +58,13 @@ font-family: 'Odibee Sans', sans-serif;
 
 svg {
     width: 100%;
-	/* border: solid yellow; */
+
 	
       }
 
 .map{
+  margin-top: 0;
   background-color: #EBF3F3;
-  margin-top: 20%;
-  
 }
 
 .map h1{
@@ -54,22 +79,32 @@ svg {
 .map__image path , polygon{
   fill: #5797A0;
   transition: fill 0.3s;
-  /* stroke: beige; */
   stroke-width: 0.5;
 }
 
 .map__image path:hover{
-  fill: #EBF3F3;
+  fill: #9D1815;
   transition: fill 0.3s;
-  stroke:#EBF3F3 ;
+  stroke:#9D1815 ;
 
 }
 
 .map__image polygon:hover{
-  fill: #EBF3F3;
+  fill: #9D1815;
   transition: fill 0.3s;
-  stroke:#EBF3F3;
+  stroke:#9D1815;
 
+}
+
+.effet{
+  
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 29%;
+  -webkit-transform: scaleX(-1);
+transform: scaleX(-1);
 }
 /* LOANA FIN */
 
