@@ -4,9 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+  --Lerouge: #9D1815;
+}
 body{
-/* background: rgb(8, 120, 151); */
-background: linear-gradient(90deg,rgb(77, 139, 156) 41%, rgb(0, 212, 255) 100%);
+background: #EBF3F3;
 margin: 0;
 height: 100vh; /*This centers vertically within the viewport*/
 margin: 0; /* Remove default margin to center horizontally */
@@ -54,17 +56,18 @@ main {
 }
 /* ALEX FIN */
 
-/* LOANA */
+/* LOANA et ALINA CARTE*/
 
+.section_carte {
+  width: 75%;
+  margin: auto;
+}
 svg {
     width: 100%;
-
-	
       }
 
 .map{
   margin-top: 0;
-  background-color: #EBF3F3;
 }
 
 .map h1{
@@ -73,23 +76,23 @@ svg {
   text-align: center;
   
 }
-.map__image{
-  width: 75%;
+.map_image{
+  margin: auto;
 }
-.map__image path , polygon{
+.map_image path , polygon{
   fill: #5797A0;
   transition: fill 0.3s;
   stroke-width: 0.5;
 }
 
-.map__image path:hover{
+.map_image path:hover{
   fill: #9D1815;
   transition: fill 0.3s;
   stroke:#9D1815 ;
 
 }
 
-.map__image polygon:hover{
+.map_image polygon:hover{
   fill: #9D1815;
   transition: fill 0.3s;
   stroke:#9D1815;
@@ -106,12 +109,59 @@ svg {
   -webkit-transform: scaleX(-1);
 transform: scaleX(-1);
 }
+
+/* description qui s'affiche au moment du hover sur la carte */
+.description {
+  display: flex;
+  width: 20vw;
+  align-items: center;
+  margin: auto;
+  margin-right: 15vw;
+}
+
+.info_sup p {
+margin: 0;
+}
+.info_sup h3 {
+margin: 0;
+margin-bottom: 5px;
+font-size: 2rem;
+color: var(--Lerouge);
+}
+.cercle {
+  border: solid 25px var(--Lerouge);
+  border-radius: 100%;
+  width: 10vw;
+  height: 10vw;
+  max-width: 110px;
+  max-height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--Lerouge);
+  margin-right: 10px;
+}
+
+.mini_cercle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border: solid 3px var(--Lerouge);
+  border-radius: 100%;
+  pointer-events: none;
+  display: none;
+}
+.visible {
+  display: block;
+}
 /* LOANA FIN */
 
 /* ALINA */
 .graph {
 height: 90vh;
-background-color:inherit;
+background-color: #1F5766;
 }
 .boutons {
   margin-bottom: 20px;
