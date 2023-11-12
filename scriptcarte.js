@@ -26,11 +26,11 @@ fetch('data2.json')
 
         const CRITERIA_YEAR = "2016";
         const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
-        const CRITERIA_MONTH = 'April';
+        // const CRITERIA_MONTH = 'April';
 
         const dataReduced = dataFetched.filter(d => {
             if (
-                d.Month === CRITERIA_MONTH &&
+                // d.Month === CRITERIA_MONTH &&
                 d.Year === CRITERIA_YEAR &&
                 d && d["State Name"] === CRITERIA_STATE &&
                 d.Indicator === CRITERIA_INDICATOR
@@ -44,9 +44,32 @@ fetch('data2.json')
         ));
         console.log(dataValues);
 
-        d3.select(".info_sup h3")
+        // Fonction pour calculer la somme des valeurs du tableau
+function calculerSomme(dataValues) {
+    let somme = 0;
+    // Parcourir le tableau et ajouter chaque valeur à la somme
+    for (let i = 0; i < dataValues.length; i++) {
+          somme += parseInt(dataValues[i]);
+    }
+  
+    return somme;
+  }
+  // Appeler la fonction et afficher le résultat
+  const resultat = calculerSomme(dataValues);
+
+  console.log("La somme des valeurs du tableau est : " + resultat);
+
+        d3.select(".info_sup h3") //nom de l'etat
         .data(dataReduced)
         .text((d,i) => `${d && d["State Name"]}` );
+
+        d3.select(".info_sup p") //description
+        .data(dataReduced)
+        .html((d) => "<p>" + resultat + " overdose deaths <br> in " + d.Year);
+
+        d3.select(".cercle p") //cercle
+        .data(dataReduced)
+        .text(resultat);
     })
 }
 

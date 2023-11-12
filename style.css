@@ -22,9 +22,6 @@ font-family: 'Odibee Sans', sans-serif;
  background-color: #5797A0;
 }
 
-main {
-  width: 100%;
-}
 
 .skeleton{
   width: 60%;
@@ -43,7 +40,14 @@ main {
 	100% { transform: translate(0, -0px); } 
 }
 /* ALEX FIN */
+main {
+  width: 100%;
+}
 
+h2 {
+  color: var(--Lerouge);
+  font-size: 3rem;
+}
 /* LOANA et ALINA CARTE*/
 
 .section_carte {
@@ -117,7 +121,8 @@ font-size: 2rem;
 color: var(--Lerouge);
 }
 .cercle {
-  border: solid 25px var(--Lerouge);
+  border: solid var(--Lerouge);
+  border-width: 1.5vw;
   border-radius: 100%;
   width: 10vw;
   height: 10vw;
@@ -126,7 +131,7 @@ color: var(--Lerouge);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--Lerouge);
   margin-right: 10px;
 }
