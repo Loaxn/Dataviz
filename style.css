@@ -17,29 +17,17 @@ font-family: 'Odibee Sans', sans-serif;
 
 /* ALEX  */
 
-
-
 .header { 
-
-
- text-align: center;
- 
-
-  
-
+ text-align: center; 
+ background-color: #5797A0;
 }
 
 main {
-
   width: 100%;
-  
-
-
 }
 
 .skeleton{
   width: 60%;
- 
 }
 
 .skeleton { 
@@ -113,10 +101,10 @@ transform: scaleX(-1);
 /* description qui s'affiche au moment du hover sur la carte */
 .description {
   display: flex;
-  width: 20vw;
+  width: 30vw;
   align-items: center;
   margin: auto;
-  margin-right: 15vw;
+  margin-right: 5vw;
 }
 
 .info_sup p {

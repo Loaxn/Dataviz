@@ -46,10 +46,6 @@ fetch('data.json')
 
     })
 
-//Comment afficher les données du json
-//Est ce que c'est vraiment nécessaire d'éffacer des données
-//Est ce que pour les coueurs de carte il faut utiliser le json ou on peut le faire manuellement
-//Comment faire pour le graphique
 // fetch('data.json').then(function (response){
 //     response.json().then(function () {
 
