@@ -13,32 +13,32 @@ console.log("hello")
 // .text((d,i) => `${d.state_name}` );
 
 //code du prof
-fetch('data.json')
-    .then((response) => response.json())
-    .then((dataFetched) => {
-        console.log(dataFetched)
+// fetch('data.json')
+//     .then((response) => response.json())
+//     .then((dataFetched) => {
+//         console.log(dataFetched)
 
-        const CRITERIA_STATE = 'AK';
-        const CRITERIA_YEAR = "2016";
-        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
+//         const CRITERIA_STATE = 'AK';
+//         const CRITERIA_YEAR = "2016";
+//         const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
 
-        const dataReduced = dataFetched.filter(d => {
-            if (
-                d.state === CRITERIA_STATE &&
-                d.year === CRITERIA_YEAR &&
-                d.indicator === CRITERIA_INDICATOR
-            ) return true
-            else return false;
-        })
+//         const dataReduced = dataFetched.filter(d => {
+//             if (
+//                 d.state === CRITERIA_STATE &&
+//                 d.year === CRITERIA_YEAR &&
+//                 d.indicator === CRITERIA_INDICATOR
+//             ) return true
+//             else return false;
+//         })
 
-        console.log(dataReduced);
+//         console.log(dataReduced);
 
-        // const dataValues = dataReduced.map(d => d.data_value)
+//         // const dataValues = dataReduced.map(d => d.data_value)
 
-        console.log(dataValues);
+//         console.log(dataValues);
 
         
-    })
+//     })
 
 // fetch('data.json').then(function (response){
 //     response.json().then(function () {
@@ -53,7 +53,7 @@ fetch('data.json')
 // });
 
 // CECI EST UN EXEMPLE reste à mettre les vrais données
-document.addEventListener('DOMContentLoaded', function () {
+
     var donnees = [
         { "nom": "Heroine", "valeur": 20 },
         { "nom": "Cocaine", "valeur": 50 },
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Configuration du graphique
     var largeur = 750;
-    var hauteur = 200;
+    var hauteur = 300;
 
     // Création de l'échelle pour l'axe des x
     var echelleX = d3.scaleBand()
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Création de l'échelle pour l'axe des y
     var echelleY = d3.scaleLinear()
         .domain([0, d3.max(donnees, function (d) { return d.valeur; })])
-        .range([hauteur, 0]);
+        .range([hauteur, 15]);
 
     // Création du conteneur SVG
     var svg = d3.select("#graphique")
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr("class", "point")
         .attr("cx", function (d) { return echelleX(d.nom) + echelleX.bandwidth() / 2; })
         .attr("cy", function (d) { return echelleY(d.valeur); })
-        .attr("r", 9) // rayon du cercle
+        .attr("r", 6) // rayon du cercle
         .attr("fill", "white")
 
    
-});
+
