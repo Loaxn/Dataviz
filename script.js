@@ -33,17 +33,11 @@ fetch('data.json')
 
         console.log(dataReduced);
 
-        const dataValues = dataReduced.map(d => d.data_value)
+        // const dataValues = dataReduced.map(d => d.data_value)
 
         console.log(dataValues);
 
-        d3.select("#graphique")
-        .selectAll(".noms")
-        .data(dataFetched)
-        .join("div")
-        .attr("class","noms")
-        .text((d,i) => `${d.state_name}` );
-
+        
     })
 
 // fetch('data.json').then(function (response){
@@ -77,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .domain(donnees.map(function (d) { return d.nom; }))
         .range([0, largeur])
         .padding(0.1);
+        
 
     // Création de l'échelle pour l'axe des y
     var echelleY = d3.scaleLinear()
@@ -108,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr("class", "point")
         .attr("cx", function (d) { return echelleX(d.nom) + echelleX.bandwidth() / 2; })
         .attr("cy", function (d) { return echelleY(d.valeur); })
-        .attr("r", 4) // rayon du cercle
+        .attr("r", 9) // rayon du cercle
         .attr("fill", "white")
 
    
