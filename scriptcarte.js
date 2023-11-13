@@ -81,7 +81,7 @@ triggers.forEach(trigger => trigger.addEventListener('mouseenter',entree));//qua
 triggers.forEach(trigger => trigger.addEventListener('mouseleave',sortie)); //idem pour la fonction sorite
 
 //réparer Florida, pour bien centrer le mini_cercle parce que l'etat a une forme particulière
-const florida = document.querySelector('.cls-12')
+const florida = document.getElementById('Florida')
 florida.addEventListener('mouseenter', function (){
     mini_cercle.classList.add('visible');
 
