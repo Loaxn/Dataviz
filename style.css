@@ -158,6 +158,7 @@ background-color: #1F5766;
 
 }
 
+
 .graph h2{
   color: aliceblue;
   
@@ -166,11 +167,7 @@ background-color: #1F5766;
 .boutons {
   margin-bottom: 20px;
 }
- .graphique{
-  border: solid palegreen;
-  width: 100%;
-  height: 100%; 
-} 
+ 
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
