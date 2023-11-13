@@ -23,7 +23,7 @@ console.log(CRITERIA_STATE);
 fetch('data2.json')
     .then((response) => response.json())
     .then((dataFetched) => {
-        console.log(dataFetched)
+        // console.log(dataFetched)
 
         const CRITERIA_YEAR = "2016";
         const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';//crières pour trier le tableau
@@ -38,12 +38,12 @@ fetch('data2.json')
             ) return true
             else return false;
         })
-        console.log(dataReduced);//création d'un tableau filtré avec seulement les données qu'on a besoin
+        // console.log(dataReduced); //création d'un tableau filtré avec seulement les données qu'on a besoin
 
         const dataValues = dataReduced.map(d => (
             d && d["Data Value"] // Il y a un espace dans le fichier json donc il faut écrira comme ça
         ));
-        console.log(dataValues);//tableau avec seulement les valeurs qu'on a besoin
+        // console.log(dataValues);//tableau avec seulement les valeurs qu'on a besoin
 
         // Fonction pour calculer la somme des valeurs du tableau
 function calculerSomme(dataValues) {
@@ -57,7 +57,7 @@ function calculerSomme(dataValues) {
   }
   // Appeler la fonction et afficher le résultat
   const resultat = calculerSomme(dataValues);
-  console.log("La somme des valeurs du tableau est : " + resultat);
+//   console.log("La somme des valeurs du tableau est : " + resultat);
 
         d3.select(".info_sup h3") //nom de l'etat
         .data(dataReduced)
@@ -110,7 +110,7 @@ fetch('data2.json')
 
         d3.selectAll(".map_image path, polygon").each(function(d, i) {
             const CRITERIA_STATE = this.id;
-            console.log(CRITERIA_STATE)
+            // console.log(CRITERIA_STATE)
             const dataReduced = dataFetched.filter(d => {
                 if (
                     // d.Month === CRITERIA_MONTH &&
@@ -120,12 +120,12 @@ fetch('data2.json')
                 ) return true
                 else return false;
             })
-            console.log(dataReduced);
+            // console.log(dataReduced);
     
             const dataValues = dataReduced.map(d => (
                 d && d["Data Value"] // Il y a un espace dans le fichier json donc il faut écrira comme ça
             ));
-            console.log(dataValues);
+            // console.log(dataValues);
             function calculerSomme(dataValues) {
                 let somme = 0;
                 // Parcourir le tableau et ajouter chaque valeur à la somme
@@ -137,7 +137,7 @@ fetch('data2.json')
               }
               // Appeler la fonction et afficher le résultat
               const resultat = calculerSomme(dataValues);
-              console.log("La somme des valeurs du tableau est : " + resultat);
+            //   console.log("La somme des valeurs du tableau est : " + resultat);
 
               if (resultat < 1000) {
                 d3.select(this).style("fill", "#ABF3E9");
