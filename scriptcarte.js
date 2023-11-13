@@ -5,7 +5,7 @@ const triggers = document.querySelectorAll('.map_image path, polygon');
 const mini_cercle = document.querySelector('.mini_cercle');
 const map = document.querySelector('.map')
 
-function entree () { //Ce qui se passe quand la souris entre dans l'etat
+function entree () { //Ce qui se passe quand la souris entre dans un etat
 mini_cercle.classList.add('visible');
 
 const etatcoords = this.getBoundingClientRect();//recuperer coordonnées de l'etat
@@ -17,7 +17,7 @@ const coords = {
 }; //le 8 correspond à la moitié de la taille du mini_cercle, pour bien le centrer
 mini_cercle.style.setProperty('transform', `translate(${coords.left}px,${coords.top}px)`);//Le minicercle se place sur le bon etat au moment du hover
 
-const CRITERIA_STATE = this.id;
+const CRITERIA_STATE = this.id; //recupérer le nom de l'etat dans l'id de la carte
 console.log(CRITERIA_STATE);
 //Affichage de la description en fonction de l'etat
 fetch('data2.json')
@@ -26,7 +26,7 @@ fetch('data2.json')
         console.log(dataFetched)
 
         const CRITERIA_YEAR = "2016";
-        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
+        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';//crières pour trier le tableau
         // const CRITERIA_MONTH = 'April';
 
         const dataReduced = dataFetched.filter(d => {
@@ -38,12 +38,12 @@ fetch('data2.json')
             ) return true
             else return false;
         })
-        console.log(dataReduced);
+        console.log(dataReduced);//création d'un tableau filtré avec seulement les données qu'on a besoin
 
         const dataValues = dataReduced.map(d => (
             d && d["Data Value"] // Il y a un espace dans le fichier json donc il faut écrira comme ça
         ));
-        console.log(dataValues);
+        console.log(dataValues);//tableau avec seulement les valeurs qu'on a besoin
 
         // Fonction pour calculer la somme des valeurs du tableau
 function calculerSomme(dataValues) {
@@ -57,7 +57,6 @@ function calculerSomme(dataValues) {
   }
   // Appeler la fonction et afficher le résultat
   const resultat = calculerSomme(dataValues);
-
   console.log("La somme des valeurs du tableau est : " + resultat);
 
         d3.select(".info_sup h3") //nom de l'etat
@@ -75,16 +74,16 @@ function calculerSomme(dataValues) {
 }
 
 function sortie () {//Ce qui se passe quand la souris sort dans l'etat
-    mini_cercle.classList.remove('visible');//faire les classes dans css
+    mini_cercle.classList.remove('visible');
 }
 
 triggers.forEach(trigger => trigger.addEventListener('mouseenter',entree));//quand la souris entre déclenche la fonction entree
 triggers.forEach(trigger => trigger.addEventListener('mouseleave',sortie)); //idem pour la fonction sorite
 
-//réparer Florida
+//réparer Florida, pour bien centrer le mini_cercle parce que l'etat a une forme particulière
 const florida = document.querySelector('.cls-12')
 florida.addEventListener('mouseenter', function (){
-    mini_cercle.classList.add('visible');//faire les classes dans css
+    mini_cercle.classList.add('visible');
 
 const etatcoords = this.getBoundingClientRect();
 const mapcoords = map.getBoundingClientRect();
@@ -99,7 +98,7 @@ mini_cercle.style.setProperty('transform', `translate(${coords.left}px,${coords.
 //----------------------------------------------------------------
 
 //Couleurs sur la carte
-//On trie le tableau en fonction de l'année et l'indicateur. Ensuite pour chaque état on fait la somme des value si la value est entre ça et ça alors fill de cette couleur
+//On trie le tableau en fonction de l'année et l'indicateur. Ensuite pour chaque état on fait la somme des value. Et si la value est entre ça et ça alors fill de cette couleur
 fetch('data2.json')
     .then((response) => response.json())
     .then((dataFetched) => {
@@ -109,7 +108,7 @@ fetch('data2.json')
         const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
         // const CRITERIA_MONTH = 'April';
 
-        d3.selectAll("path, polygon").each(function(d, i) {
+        d3.selectAll(".map_image path, polygon").each(function(d, i) {
             const CRITERIA_STATE = this.id;
             console.log(CRITERIA_STATE)
             const dataReduced = dataFetched.filter(d => {
@@ -138,7 +137,6 @@ fetch('data2.json')
               }
               // Appeler la fonction et afficher le résultat
               const resultat = calculerSomme(dataValues);
-            
               console.log("La somme des valeurs du tableau est : " + resultat);
 
               if (resultat < 1000) {
