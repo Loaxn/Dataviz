@@ -1,68 +1,44 @@
-// fetch('data.json').then(function (response){
-//     response.json().then(function () {
+// tous les éléments de type "path" et "polygon" et ajoutez un écouteur d'événements pour le clic
+document.querySelectorAll("path,polygon").forEach(element => {
+element.addEventListener('click', function() {
+// on récupère l'identifiant de l'État à partir de l'élément cliqué
+const CRITERIA_STATE = this.id;
+// Effectuez une requête pour récupérer les données du fichier JSON
+fetch('data2.json')
+    .then((response) => response.json())
+    .then((dataFetched) => {
+        // on definit la plage d'années de 2015 à 2023
+        const yearRange = Array.from({ length: 9 }, (_, index) => (2015 + index).toString());
+        // on definit l'indicateur comme 'Methadone (T40.3)'
+        const CRITERIA_INDICATOR = 'Methadone (T40.3)'
+        // stockage de la somme des valeurs de données pour chaque année
+        const sumValuesByYear = Array(yearRange.length).fill(0); // Initialiser le tableau avec des zéros
+        //  filtrez en fonction des critères
+        dataFetched.forEach(d => {
+        if (
+            yearRange.includes(d.Year) &&
+            d && d["State Name"] === CRITERIA_STATE &&
+            d.Indicator === CRITERIA_INDICATOR
+            ) {
+            // Initialisez la somme pour l'année si elle n'existe pas encore
+            if (!isNaN(numericValue)) {
+                sumValuesByYear[yearIndex] += numericValue;
+            }
 
-//     d3.select("#graphique")
-//     .selectAll(".noms")
-//     .data(data)
-//     .join("div")
-//     .attr("class","noms")
-//     .text(`state : ${state}`);
-//     });
-// });
+// on ajoute la valeur de données convertie en nombre à la somme de l'année correspondante
+  const numericValue = parseFloat(d["Data Value"].replace(',', ''));
 
-// CECI EST UN EXEMPLE reste à mettre les vrais données
 
-    var donnees = [
-        { "nom": "Heroine", "valeur": 20 },
-        { "nom": "Cocaine", "valeur": 50 },
-        { "nom": "Methadone", "valeur": 30 },
-        { "nom": "Methadone", "valeur": 10 }
-        // Ajoutez les autres données ici
-    ];
+// on verifie si la conversion a réussi (remplacez NaN par 0)
+ 
+}
+});
+console.log(sumValuesByYear);
+            });
+    });
+});
 
-    // Configuration du graphique
-    var largeur = 750;
-    var hauteur = 300;
+//Dessiner le graphe en utilisant la somme 
 
-    // Création de l'échelle pour l'axe des x
-    var echelleX = d3.scaleBand()
-        .domain(donnees.map(function (d) { return d.nom; }))
-        .range([0, largeur])
-        .padding(0.1);
-        
 
-    // Création de l'échelle pour l'axe des y
-    var echelleY = d3.scaleLinear()
-        .domain([0, d3.max(donnees, function (d) { return d.valeur; })])
-        .range([hauteur, 15]);
-
-    // Création du conteneur SVG
-    var svg = d3.select("#graphique")
-        .append("svg")
-        .attr("width", largeur)
-        .attr("height", hauteur);
-
-    // Création de la ligne
-    var ligne = d3.line()
-        .x(function (d) { return echelleX(d.nom) + echelleX.bandwidth() / 2; }) // Centre de la bande
-        .y(function (d) { return echelleY(d.valeur); });
-
-    // Ajout de la ligne au graphique
-    svg.append("path")
-        .datum(donnees)
-        .attr("d", ligne)
-        .attr("fill", "none")
-        .attr("stroke", "red");
-
-    // Ajout des points de données
-    svg.selectAll(".point")
-        .data(donnees)
-        .enter().append("circle")
-        .attr("class", "point")
-        .attr("cx", function (d) { return echelleX(d.nom) + echelleX.bandwidth() / 2; })
-        .attr("cy", function (d) { return echelleY(d.valeur); })
-        .attr("r", 6) // rayon du cercle
-        .attr("fill", "white")
-
-   
 
