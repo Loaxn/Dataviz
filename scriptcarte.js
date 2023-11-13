@@ -1,5 +1,6 @@
 // SCRIPT POUR CARTE 
 
+
 const triggers = document.querySelectorAll('.map_image path, polygon');
 const mini_cercle = document.querySelector('.mini_cercle');
 const map = document.querySelector('.map')
@@ -97,4 +98,66 @@ mini_cercle.style.setProperty('transform', `translate(${coords.left}px,${coords.
 
 //----------------------------------------------------------------
 
-//Nom de l'état qui change en fonction de la partie de la carte que on hover
+//Couleurs sur la carte
+//On trie le tableau en fonction de l'année et l'indicateur. Ensuite pour chaque état on fait la somme des value si la value est entre ça et ça alors fill de cette couleur
+fetch('data2.json')
+    .then((response) => response.json())
+    .then((dataFetched) => {
+
+        
+        const CRITERIA_YEAR = "2016";
+        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
+        // const CRITERIA_MONTH = 'April';
+
+        d3.selectAll("path, polygon").each(function(d, i) {
+            const CRITERIA_STATE = this.id;
+            console.log(CRITERIA_STATE)
+            const dataReduced = dataFetched.filter(d => {
+                if (
+                    // d.Month === CRITERIA_MONTH &&
+                    d.Year === CRITERIA_YEAR &&
+                    d && d["State Name"] === CRITERIA_STATE &&
+                    d.Indicator === CRITERIA_INDICATOR
+                ) return true
+                else return false;
+            })
+            console.log(dataReduced);
+    
+            const dataValues = dataReduced.map(d => (
+                d && d["Data Value"] // Il y a un espace dans le fichier json donc il faut écrira comme ça
+            ));
+            console.log(dataValues);
+            function calculerSomme(dataValues) {
+                let somme = 0;
+                // Parcourir le tableau et ajouter chaque valeur à la somme
+                for (let i = 0; i < dataValues.length; i++) {
+                      somme += parseInt(dataValues[i]);
+                }
+              
+                return somme;
+              }
+              // Appeler la fonction et afficher le résultat
+              const resultat = calculerSomme(dataValues);
+            
+              console.log("La somme des valeurs du tableau est : " + resultat);
+
+              if (resultat < 1000) {
+                d3.select(this).style("fill", "#ABF3E9");
+            } else if (resultat >= 1000 && resultat < 5000) {
+                d3.select(this).style("fill", "#80C4C3");
+            } else if (resultat >= 5000 && resultat < 10000) {
+                d3.select(this)
+                .style("fill","#5C9DA4");
+              } else if (resultat >= 10000 && resultat < 20000) {
+                d3.select(this)
+                .style("fill","#4D8B96");
+              } else if (resultat >= 20000 && resultat < 30000) {
+                d3.select(this)
+                .style("fill","#3A7581");
+              } else {
+                d3.select(this)
+                .style("fill","#1F5766");
+              };
+
+        });
+    })
