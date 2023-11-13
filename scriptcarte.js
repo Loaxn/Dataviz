@@ -18,16 +18,20 @@ const coords = {
 mini_cercle.style.setProperty('transform', `translate(${coords.left}px,${coords.top}px)`);//Le minicercle se place sur le bon etat au moment du hover
 
 const CRITERIA_STATE = this.id; //recupérer le nom de l'etat dans l'id de la carte
-console.log(CRITERIA_STATE);
 //Affichage de la description en fonction de l'etat
 fetch('data2.json')
     .then((response) => response.json())
     .then((dataFetched) => {
         // console.log(dataFetched)
 
-        const CRITERIA_YEAR = "2016";
-        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';//crières pour trier le tableau
+        let CRITERIA_YEAR = document.querySelector(".select_annee").value;
+        const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
         // const CRITERIA_MONTH = 'April';
+
+        let selecteurannee = document.querySelector(".select_annee")//détetce le changement de l'année
+        selecteurannee.addEventListener('change', function (){
+            CRITERIA_YEAR = document.querySelector(".select_annee").value;
+        });
 
         const dataReduced = dataFetched.filter(d => {
             if (
@@ -81,7 +85,7 @@ triggers.forEach(trigger => trigger.addEventListener('mouseenter',entree));//qua
 triggers.forEach(trigger => trigger.addEventListener('mouseleave',sortie)); //idem pour la fonction sorite
 
 //réparer Florida, pour bien centrer le mini_cercle parce que l'etat a une forme particulière
-const florida = document.querySelector('.cls-12')
+const florida = document.getElementById('Florida')
 florida.addEventListener('mouseenter', function (){
     mini_cercle.classList.add('visible');
 
@@ -103,12 +107,70 @@ fetch('data2.json')
     .then((response) => response.json())
     .then((dataFetched) => {
 
-        
-        const CRITERIA_YEAR = "2016";
+        let CRITERIA_YEAR = document.querySelector(".select_annee").value;
         const CRITERIA_INDICATOR = 'Number of Drug Overdose Deaths';
         // const CRITERIA_MONTH = 'April';
 
-        d3.selectAll(".map_image path, polygon").each(function(d, i) {
+        let selecteurannee = document.querySelector(".select_annee")//détetce le changement de l'année
+        //Pour que au moment ou on modifie le select, les couleurs changent
+        selecteurannee.addEventListener('change', function (){
+            CRITERIA_YEAR = document.querySelector(".select_annee").value;
+            // console.log(CRITERIA_YEAR)
+
+            d3.selectAll(".map_image path, polygon").each(function (d, i) {
+                const CRITERIA_STATE = this.id;
+                // console.log(CRITERIA_STATE)
+                const dataReduced = dataFetched.filter(d => {
+                    if (
+                        // d.Month === CRITERIA_MONTH &&
+                        d.Year === CRITERIA_YEAR &&
+                        d && d["State Name"] === CRITERIA_STATE &&
+                        d.Indicator === CRITERIA_INDICATOR
+                    ) return true
+                    else return false;
+                })
+                // console.log(dataReduced);
+        
+                const dataValues = dataReduced.map(d => (
+                    d && d["Data Value"] // Il y a un espace dans le fichier json donc il faut écrira comme ça
+                ));
+                // console.log(dataValues);
+                function calculerSomme(dataValues) {
+                    let somme = 0;
+                    // Parcourir le tableau et ajouter chaque valeur à la somme
+                    for (let i = 0; i < dataValues.length; i++) {
+                          somme += parseInt(dataValues[i]);
+                    }
+                  
+                    return somme;
+                  }
+                  // Appeler la fonction et afficher le résultat
+                  const resultat = calculerSomme(dataValues);
+                //   console.log("La somme des valeurs du tableau est : " + resultat);
+    
+                  if (resultat < 1000) {
+                    d3.select(this).style("fill", "#ABF3E9");
+                } else if (resultat >= 1000 && resultat < 5000) {
+                    d3.select(this).style("fill", "#80C4C3");
+                } else if (resultat >= 5000 && resultat < 10000) {
+                    d3.select(this)
+                    .style("fill","#5C9DA4");
+                  } else if (resultat >= 10000 && resultat < 20000) {
+                    d3.select(this)
+                    .style("fill","#4D8B96");
+                  } else if (resultat >= 20000 && resultat < 30000) {
+                    d3.select(this)
+                    .style("fill","#3A7581");
+                  } else {
+                    d3.select(this)
+                    .style("fill","#1F5766");
+                  };
+    
+            });
+        });
+
+        //Pour que les couleurs soient déjà affichés avant qu'on change le select
+        d3.selectAll(".map_image path, polygon").each(function (d, i) {
             const CRITERIA_STATE = this.id;
             // console.log(CRITERIA_STATE)
             const dataReduced = dataFetched.filter(d => {
