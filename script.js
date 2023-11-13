@@ -1,7 +1,7 @@
 // code de Alina
 
 //afficher quelques données du fichier json test
-console.log("hello")
+// console.log("hello")
 
 
 // d3.select("#graphique")
