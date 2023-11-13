@@ -13,6 +13,7 @@ margin: 0;
 height: 100vh; /*This centers vertically within the viewport*/
 margin: 0; /* Remove default margin to center horizontally */
 font-family: 'Odibee Sans', sans-serif;
+
 }
 
 /* ALEX  */
@@ -20,7 +21,70 @@ font-family: 'Odibee Sans', sans-serif;
 .header { 
  text-align: center; 
  background-color: #5797A0;
+ z-index: -2;
+ height: 100vh;
+ position: relative;
+ overflow: hidden;
 }
+
+.text{
+  border-radius: 1.375rem;
+  background: rgba(9, 56, 68, 0.70);
+  backdrop-filter: blur(4.5px);
+  z-index: -0;
+  width: 28vw;
+  height: 17vw;
+position: absolute;
+margin-left: 15vw;
+    margin-top: 13vw;
+    padding: 1vw;
+text-align: left;
+    
+
+
+}
+
+.text-in{
+  color: #FFF;
+  font-family: Prociono;
+font-size: 1.4vw;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 75%;
+height: 21%;
+}
+
+.text2{
+  border-radius: 1.375rem;
+  background: rgba(9, 56, 68, 0.70);
+  backdrop-filter: blur(4.5px);
+  z-index: -0;
+  width: 28vw;
+  height: 14vw;
+position: absolute;
+margin-left: 57vw;
+    margin-top: 30vw;
+padding: 1vw;
+    
+
+
+}
+
+
+
+.text-in2{
+  color: #FFF;
+  font-family: Prociono;
+font-size: 1.4vw;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 98%;
+height: 21%;
+text-align: right;
+}
+
 
 
 .skeleton{
@@ -32,12 +96,115 @@ font-family: 'Odibee Sans', sans-serif;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
+  z-index: 4;
 } /* Code qui donne un effet de flottement à l'image */
 
 @keyframes floating {
 	0% { transform: translate(0, 0px); }
 	50% { transform: translate(0, 15px); }
 	100% { transform: translate(0, -0px); } 
+}
+
+.pill{
+  width: 30%;
+  position: absolute;
+  top: 2vw;
+  right: 3vw;
+  
+}
+
+.pill2{
+  width: 28%;
+  position: absolute;
+  top: 60vh;
+  left: 2vw;
+}
+
+.pill3{
+  width: 23%;
+  position: absolute;
+  top: 70vh;
+}
+
+.pill4{
+  width: 35%;
+  position: absolute;
+  top: 1vw;
+  left: 20vw;
+}
+
+.animation1 { 
+	animation-name: floating1;
+	animation-duration: 2.4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+  z-index: 2;
+} /* Code qui donne un effet de flottement à l'image */
+
+.animation2 { 
+	animation-name: floating2;
+	animation-duration: 2.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+  z-index: 2;
+} /* Code qui donne un effet de flottement à l'image */
+
+.animation3 { 
+	animation-name: floating3;
+	animation-duration: 2.6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+  z-index: -2;
+} /* Code qui donne un effet de flottement à l'image */
+
+.animation4 { 
+	animation-name: floating4;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+  z-index: -2;
+} /* Code qui donne un effet de flottement à l'image */
+
+@keyframes floating {
+	0% { transform: translate(0, 0px); }
+	50% { transform: translate(0, 15px); }
+	100% { transform: translate(0, -0px); } 
+  
+}
+
+@keyframes floating1 {
+	0% { transform: translate(0, 0px) rotate(25deg); }
+	50% { transform: translate(0, 60px) rotate(25deg); }
+	100% { transform: translate(0, -0px) rotate(25deg); } 
+
+}
+
+
+@keyframes floating2 {
+	0% { transform: translate(0, 0px) rotate(-25deg); }
+	50% { transform: translate(0, 30px) rotate(-30deg); }
+	100% { transform: translate(0, -0px) rotate(-25deg); } 
+}
+
+@keyframes floating3 {
+	0% { transform: translate(0, 0px) rotate(15deg); }
+	50% { transform: translate(0, 15px) rotate(15deg); }
+	100% { transform: translate(0, -0px) rotate(15deg); } 
+}
+
+@keyframes floating4 {
+	0% { transform: translate(0, 0px) rotate(-50deg); }
+	50% { transform: translate(0, 70px) rotate(-50deg); }
+	100% { transform: translate(0, -0px) rotate(-50deg); } 
+}
+
+.fog{
+position: absolute;
+z-index: 3;
+width: 100%;
+height: 100vh;
+bottom: 0;
+left: 0;
 }
 /* ALEX FIN */
 main {
@@ -166,11 +333,11 @@ background-color: #1F5766;
 .boutons {
   margin-bottom: 20px;
 }
- .graphique{
+.graphique{
   border: solid palegreen;
   width: 100%;
-  height: 100%; 
-} 
+  /* height: 100%; */
+}
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
