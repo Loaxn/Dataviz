@@ -12,7 +12,7 @@ fetch('data2.json')
         // on definit l'indicateur comme 'Methadone (T40.3)'
         const CRITERIA_INDICATOR = 'Methadone (T40.3)'
         // stockage de la somme des valeurs de données pour chaque année
-        const sumValuesByYear = {};
+        const sumValuesByYear = Array(yearRange.length).fill(0); // Initialiser le tableau avec des zéros
         //  filtrez en fonction des critères
         dataFetched.forEach(d => {
         if (
@@ -21,17 +21,16 @@ fetch('data2.json')
             d.Indicator === CRITERIA_INDICATOR
             ) {
             // Initialisez la somme pour l'année si elle n'existe pas encore
-            if (!sumValuesByYear[d.Year]) {
-                sumValuesByYear[d.Year] = 0;
+            if (!isNaN(numericValue)) {
+                sumValuesByYear[yearIndex] += numericValue;
             }
 
 // on ajoute la valeur de données convertie en nombre à la somme de l'année correspondante
-const numericValue = parseFloat(d["Data Value"].replace(',', ''));
+  const numericValue = parseFloat(d["Data Value"].replace(',', ''));
+
 
 // on verifie si la conversion a réussi (remplacez NaN par 0)
- if (!isNaN(numericValue)) {
-     sumValuesByYear[d.Year] += numericValue;
- }
+ 
 }
 });
 console.log(sumValuesByYear);

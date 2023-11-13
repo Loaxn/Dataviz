@@ -166,11 +166,11 @@ background-color: #1F5766;
 .boutons {
   margin-bottom: 20px;
 }
-.graphique{
+ .graphique{
   border: solid palegreen;
   width: 100%;
-  /* height: 100%; */
-}
+  height: 100%; 
+} 
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
