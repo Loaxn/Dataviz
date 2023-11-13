@@ -185,9 +185,19 @@ background-color: #1F5766;
    text-align:center;
    background-color: rgba(0, 0, 0, 0.445);
    color: white;
-   padding: 5px;
+   padding: 10px;
+   margin: 10px;
    border: none;
+   border-radius: 5px;
+   font-family: "Poppins";
+   cursor: pointer;
   }
+
+  .graph input[type="button"]:hover{
+    background-color:#9D1815;
+  }
+
+
 .info {
   width: 30vw;
   color: aliceblue;
