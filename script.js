@@ -32,54 +32,54 @@ document.querySelectorAll("path, polygon").forEach(element => {
                     }
                 });
 
-                const dataPoints = yearRange.map((year, index) => ({
-                    x: parseInt(year, 10), // Utilisez parseInt pour obtenir un nombre entier
-                    y: sumValuesByYear[index]
-                }));
+const dataPoints = yearRange.map((year, index) => ({
+    x: parseInt(year, 10), // Utilisez parseInt pour obtenir un nombre entier
+    y: sumValuesByYear[index]
+}));
 
-                // Utilisez D3.js pour créer un graphique en ligne
-                const svg = d3.select('#graphique');
+// Utilisez D3.js pour créer un graphique en ligne
+const svg = d3.select('.graphique');
 
-                const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-                const width = +svg.attr('width') - margin.left - margin.right;
-                const height = +svg.attr('height') - margin.top - margin.bottom;
+const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+const width = +svg.attr('width') - margin.left - margin.right;
+const height = +svg.attr('height') - margin.top - margin.bottom;
 
-                const x = d3.scaleLinear()
-                    .range([0, width])
-                    .domain(d3.extent(dataPoints, d => d.x))
-                   
+const x = d3.scaleLinear()
+    .range([0, width])
+    .domain(d3.extent(dataPoints, d => d.x))
+   
 
-                const y = d3.scaleLinear()
-                    .range([height, 0])
-                    .domain([0, d3.max(dataPoints, d => d.y)])
-                    
+const y = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, d3.max(dataPoints, d => d.y)])
+    
 
-                const line = d3.line()
-                    .x(d => x(d.x))
-                    .y(d => y(d.y));
+const line = d3.line()
+    .x(d => x(d.x))
+    .y(d => y(d.y));
 
-                // Ajoutez un groupe pour le tracé du graphe
-                const graphGroup = svg.append('g')
-                    .attr('transform', `translate(${margin.left},${margin.top})`);
+            // Ajoutez un groupe pour le tracé du graphe
+const graphGroup = svg.append('g')
+.attr('transform', `translate(${margin.left},${margin.top})`);
 
-                graphGroup.append('path')
-                    .data([dataPoints])
-                    .attr('class', 'line')
-                    .attr('d', line)
-                    .attr('stroke','#9D1815')
-                    .attr('fill','none');
+graphGroup.append('path')
+ .data([dataPoints])
+ .attr('class', 'line')
+ .attr('d', line)
+ .attr('stroke','#9D1815')
+ .attr('fill','none');
 
-                // Ajoutez les cercles pour chaque point de données
-                graphGroup.selectAll('circle')
-                    .data(dataPoints)
-                    .enter().append('circle')
-                    .attr('cx', d => x(d.x))
-                    .attr('cy', d => y(d.y))
-                    .attr('r', 4) // Rayon du cercle
-                    .attr('fill', 'white'); // Couleur du cercle
-
-                // Ajoutez les axes x et y
-                graphGroup.append('g')
+// Ajoutez les cercles pour chaque point de données
+graphGroup.selectAll('circle')
+    .data(dataPoints)
+    .enter().append('circle')
+    .attr('cx', d => x(d.x))
+    .attr('cy', d => y(d.y))
+    .attr('r', 4) // Rayon du cercle
+    .attr('fill', 'white'); // Couleur du cercle
+           
+    // Ajoutez les axes x et y
+            graphGroup.append('g')
                     .attr('transform', `translate(0, ${height})`)
                     .call(d3.axisBottom(x))
                     .attr('fill','white');
