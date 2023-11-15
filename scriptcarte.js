@@ -7,7 +7,6 @@ const map = document.querySelector('.map')
 
 function entree () { //Ce qui se passe quand la souris entre dans un etat
 mini_cercle.classList.add('visible');
-
 const etatcoords = this.getBoundingClientRect();//recuperer coordonnées de l'etat
 const mapcoords = map.getBoundingClientRect();//récupérer les coordonnées de la carte
 
@@ -221,3 +220,14 @@ fetch('data2.json')
 
         });
     })
+
+    // d3.selectAll(".map_image path, .map_image polygon")
+    // .on("mouseover", function () {
+    //     // Code à exécuter lorsque survolé
+    //     d3.select(this).style("background-color", "red");
+    // })
+    // .on("mouseout", function () {
+    //     // Code à exécuter lorsque le survol est terminé
+    //     // Rétablir le style initial, par exemple :
+    //     d3.select(this).style("background-color", null);
+    // });

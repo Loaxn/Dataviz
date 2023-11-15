@@ -20,7 +20,7 @@ font-family: 'Odibee Sans', sans-serif;
 
 .header { 
  text-align: center; 
- background-color: #5797A0;
+ background-color: #488693;
  z-index: -2;
  height: 100vh;
  position: relative;
@@ -29,7 +29,7 @@ font-family: 'Odibee Sans', sans-serif;
 
 .text{
   border-radius: 1.375rem;
-  background: rgba(9, 56, 68, 0.70);
+  background: rgba(9, 56, 68, 0.7);
   backdrop-filter: blur(4.5px);
   z-index: -0;
   width: 28vw;
@@ -44,6 +44,20 @@ text-align: left;
 
 }
 
+.text1{
+  z-index: 3;
+  width: 50vw;
+position: absolute;
+margin-left: 25%;
+margin-top: -15vh;
+    
+
+
+}
+
+.img-in1{
+width: 100%;
+}
 .text-in{
   color: #FFF;
   font-family: Prociono;
@@ -106,15 +120,15 @@ text-align: right;
 }
 
 .pill{
-  width: 30%;
+  width: 20%;
   position: absolute;
   top: 2vw;
-  right: 3vw;
+  right: 10vw;
   
 }
 
 .pill2{
-  width: 28%;
+  width: 22%;
   position: absolute;
   top: 60vh;
   left: 2vw;
@@ -131,6 +145,13 @@ text-align: right;
   position: absolute;
   top: 1vw;
   left: 20vw;
+}
+
+.tes{
+  width: 45%;
+  position: absolute;
+  top: 12vw;
+  left: 10vw;
 }
 
 .animation1 { 
@@ -165,6 +186,14 @@ text-align: right;
   z-index: -2;
 } /* Code qui donne un effet de flottement à l'image */
 
+.animation5 { 
+	animation-name: floating5;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+  z-index: -2;
+}
+
 @keyframes floating {
 	0% { transform: translate(0, 0px); }
 	50% { transform: translate(0, 15px); }
@@ -198,6 +227,12 @@ text-align: right;
 	100% { transform: translate(0, -0px) rotate(-50deg); } 
 }
 
+@keyframes floating5 {
+	0% { transform: translate(0, 0px); }
+	50% { transform: translate(0, 70px); }
+	100% { transform: translate(0, -0px); } 
+}
+
 .fog{
 position: absolute;
 z-index: 3;
@@ -214,19 +249,23 @@ main {
 h2 {
   color: var(--Lerouge);
   font-size: 3rem;
+  margin: 0;
+  margin-top: 10px;
 }
-/* LOANA et ALINA CARTE*/
+
+/* LOANA et ALINA CARTE ET GRAPHIQUE*/
 
 .section_carte {
   width: 75%;
   margin: auto;
 }
 svg {
-    width: 100%;
+    width: 70%;
       }
 
 .map{
   margin-top: 0;
+  width: 100%;
 }
 
 .map h1{
@@ -237,6 +276,9 @@ svg {
 }
 .map_image{
   margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-right: 100px;
 }
 .map_image path , polygon{
   fill: #5797A0;
@@ -259,7 +301,6 @@ svg {
 }
 
 .effet{
-  
   width: 100%;
   height: 100%;
   position: absolute;
@@ -268,14 +309,17 @@ svg {
   -webkit-transform: scaleX(-1);
 transform: scaleX(-1);
 }
-
 /* description qui s'affiche au moment du hover sur la carte */
 .description {
   display: flex;
-  width: 30vw;
+  width: 80%;
   align-items: center;
-  margin: auto;
-  margin-right: 5vw;
+  justify-content: space-between;
+}
+.cercle_info {
+  display: flex;
+  width: fit-content;
+  margin: 10px;
 }
 
 .info_sup p {
@@ -316,9 +360,34 @@ color: var(--Lerouge);
 .visible {
   display: block;
 }
-/* LOANA FIN */
+.container {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+.jauge {
+  width: 20px;
+  border-radius: 10px;
+  background: rgb(31,87,102);
+background: linear-gradient(0deg, rgba(31,87,102,1) 0%, rgba(173,245,235,1) 100%);
+margin-right: 10px;
+}
+.container_jauge {
+  display: flex;
+  position: absolute;
+  right: 0;
+  height: 80%;
+  width: fit-content;
+}
+.chiffres {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--Lerouge);
+}
+/* FIN CARTE  */
 
-/* ALINA */
+/* GRAPHIQUE */
 .graph {
 height: 90vh;
 background-color: #1F5766;
@@ -334,15 +403,12 @@ background-color: #1F5766;
 .boutons {
   margin-bottom: 20px;
 }
-<<<<<<< HEAD
+
 .graphique{
   border: solid palegreen;
   width: 100%;
   /* height: 100%; */
 }
-=======
- 
->>>>>>> 1923d535a7e379bd6198271ebc621c53dbdcb503
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
@@ -379,4 +445,3 @@ background-color: #1F5766;
 .info img {
   width: 100%;
 }
-/* ALINA FIN */
