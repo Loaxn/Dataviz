@@ -214,19 +214,23 @@ main {
 h2 {
   color: var(--Lerouge);
   font-size: 3rem;
+  margin: 0;
+  margin-top: 10px;
 }
-/* LOANA et ALINA CARTE*/
+
+/* LOANA et ALINA CARTE ET GRAPHIQUE*/
 
 .section_carte {
   width: 75%;
   margin: auto;
 }
 svg {
-    width: 100%;
+    width: 70%;
       }
 
 .map{
   margin-top: 0;
+  width: 100%;
 }
 
 .map h1{
@@ -237,6 +241,9 @@ svg {
 }
 .map_image{
   margin: auto;
+  display: flex;
+  justify-content: center;
+  padding-right: 100px;
 }
 .map_image path , polygon{
   fill: #5797A0;
@@ -259,7 +266,6 @@ svg {
 }
 
 .effet{
-  
   width: 100%;
   height: 100%;
   position: absolute;
@@ -268,14 +274,17 @@ svg {
   -webkit-transform: scaleX(-1);
 transform: scaleX(-1);
 }
-
 /* description qui s'affiche au moment du hover sur la carte */
 .description {
   display: flex;
-  width: 30vw;
+  width: 80%;
   align-items: center;
-  margin: auto;
-  margin-right: 5vw;
+  justify-content: space-between;
+}
+.cercle_info {
+  display: flex;
+  width: fit-content;
+  margin: 10px;
 }
 
 .info_sup p {
@@ -316,9 +325,34 @@ color: var(--Lerouge);
 .visible {
   display: block;
 }
-/* LOANA FIN */
+.container {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+.jauge {
+  width: 20px;
+  border-radius: 10px;
+  background: rgb(31,87,102);
+background: linear-gradient(0deg, rgba(31,87,102,1) 0%, rgba(173,245,235,1) 100%);
+margin-right: 10px;
+}
+.container_jauge {
+  display: flex;
+  position: absolute;
+  right: 0;
+  height: 80%;
+  width: fit-content;
+}
+.chiffres {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--Lerouge);
+}
+/* FIN CARTE  */
 
-/* ALINA */
+/* GRAPHIQUE */
 .graph {
 height: 90vh;
 background-color: #1F5766;
@@ -334,15 +368,12 @@ background-color: #1F5766;
 .boutons {
   margin-bottom: 20px;
 }
-<<<<<<< HEAD
+
 .graphique{
   border: solid palegreen;
   width: 100%;
   /* height: 100%; */
 }
-=======
- 
->>>>>>> 1923d535a7e379bd6198271ebc621c53dbdcb503
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
@@ -379,4 +410,3 @@ background-color: #1F5766;
 .info img {
   width: 100%;
 }
-/* ALINA FIN */
