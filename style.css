@@ -156,7 +156,7 @@ text-align: right;
 
 .animation1 { 
 	animation-name: floating1;
-	animation-duration: 2.4s;
+	animation-duration: 4s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
   z-index: 2;
@@ -259,7 +259,7 @@ h2 {
   width: 75%;
   margin: auto;
 }
-svg {
+.map_image svg {
     width: 70%;
       }
 
@@ -404,11 +404,7 @@ background-color: #1F5766;
   margin-bottom: 20px;
 }
 
-.graphique{
-  border: solid palegreen;
-  width: 100%;
-  /* height: 100%; */
-}
+
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
