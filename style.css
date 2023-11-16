@@ -61,12 +61,13 @@ width: 100%;
 .text-in{
   color: #FFF;
   font-family: Prociono;
-font-size: 1.4vw;
+font-size: 1.2vw;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 width: 75%;
 height: 21%;
+font-family: "Poppins";
 }
 
 .text2{
@@ -80,7 +81,7 @@ position: absolute;
 margin-left: 57vw;
     margin-top: 30vw;
 padding: 1vw;
-    
+font-family: "Poppins";   
 
 
 }
@@ -88,9 +89,9 @@ padding: 1vw;
 
 
 .text-in2{
-  color: #FFF;
-  font-family: Prociono;
-font-size: 1.4vw;
+color: #FFF;
+font-family: "Poppins";
+font-size: 1.2vw;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -431,6 +432,9 @@ background-color: #1F5766;
     background-color:#9D1815;
   }
 
+  .graph input[type="button"]:hover::after{
+    background-color:#9D1815;
+  }
 
 .info {
   width: 30vw;
