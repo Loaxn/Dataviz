@@ -59,13 +59,10 @@ margin-top: -15vh;
 width: 100%;
 }
 .text-in{
-  color: #FFF;
-  font-family: Prociono;
+color: #FFF;
 font-size: 1.2vw;
-font-style: normal;
-font-weight: 400;
 line-height: normal;
-width: 75%;
+width: 83%;
 height: 21%;
 font-family: "Poppins";
 }
@@ -75,11 +72,11 @@ font-family: "Poppins";
   background: rgba(9, 56, 68, 0.70);
   backdrop-filter: blur(4.5px);
   z-index: -0;
-  width: 28vw;
+  width: 30vw;
   height: 14vw;
 position: absolute;
 margin-left: 57vw;
-    margin-top: 30vw;
+margin-top: 30vw;
 padding: 1vw;
 font-family: "Poppins";   
 
@@ -97,7 +94,8 @@ font-weight: 400;
 line-height: normal;
 width: 98%;
 height: 21%;
-text-align: right;
+text-align: left;
+margin-left: 10px;
 }
 
 
@@ -444,4 +442,14 @@ background-color: #1F5766;
 }
 .info img {
   width: 100%;
+}
+
+footer {
+  background-color: #333;
+
+}
+
+p{
+ font-family: "Poppins";
+
 }
