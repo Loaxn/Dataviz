@@ -278,6 +278,7 @@ h2 {
   display: flex;
   justify-content: center;
   padding-right: 100px;
+  
 }
 .map_image path , polygon{
   fill: #5797A0;
@@ -289,7 +290,7 @@ h2 {
   fill: #9D1815;
   transition: fill 0.3s;
   stroke:#9D1815 ;
-
+  
 }
 
 .map_image polygon:hover{
@@ -297,6 +298,10 @@ h2 {
   transition: fill 0.3s;
   stroke:#9D1815;
 
+}
+
+path , polygon{
+  cursor: pointer;
 }
 
 .effet{
