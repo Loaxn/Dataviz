@@ -59,14 +59,12 @@ margin-top: -15vh;
 width: 100%;
 }
 .text-in{
-  color: #FFF;
-  font-family: Prociono;
-font-size: 1.4vw;
-font-style: normal;
-font-weight: 400;
+color: #FFF;
+font-size: 1.2vw;
 line-height: normal;
-width: 75%;
+width: 83%;
 height: 21%;
+font-family: "Poppins";
 }
 
 .text2{
@@ -74,13 +72,13 @@ height: 21%;
   background: rgba(9, 56, 68, 0.70);
   backdrop-filter: blur(4.5px);
   z-index: -0;
-  width: 28vw;
+  width: 30vw;
   height: 14vw;
 position: absolute;
 margin-left: 57vw;
-    margin-top: 30vw;
+margin-top: 30vw;
 padding: 1vw;
-    
+font-family: "Poppins";   
 
 
 }
@@ -88,15 +86,16 @@ padding: 1vw;
 
 
 .text-in2{
-  color: #FFF;
-  font-family: Prociono;
-font-size: 1.4vw;
+color: #FFF;
+font-family: "Poppins";
+font-size: 1.2vw;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 width: 98%;
 height: 21%;
-text-align: right;
+text-align: left;
+margin-left: 10px;
 }
 
 
@@ -279,6 +278,7 @@ h2 {
   display: flex;
   justify-content: center;
   padding-right: 100px;
+  
 }
 .map_image path , polygon{
   fill: #5797A0;
@@ -290,7 +290,7 @@ h2 {
   fill: #9D1815;
   transition: fill 0.3s;
   stroke:#9D1815 ;
-
+  
 }
 
 .map_image polygon:hover{
@@ -298,6 +298,10 @@ h2 {
   transition: fill 0.3s;
   stroke:#9D1815;
 
+}
+
+path , polygon{
+  cursor: pointer;
 }
 
 .effet{
@@ -436,6 +440,9 @@ background-color: #1F5766;
     background-color:#9D1815;
   }
 
+  .graph input[type="button"]:hover::after{
+    background-color:#9D1815;
+  }
 
 .info {
   width: 30vw;
@@ -445,4 +452,14 @@ background-color: #1F5766;
 }
 .info img {
   width: 100%;
+}
+
+footer {
+  background-color: #333;
+
+}
+
+p{
+ font-family: "Poppins";
+
 }
