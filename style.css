@@ -357,6 +357,11 @@ color: var(--Lerouge);
   pointer-events: none;
   display: none;
 }
+.trait {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+}
 .visible {
   display: block;
 }

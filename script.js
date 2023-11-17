@@ -37,7 +37,6 @@ fetch('data2.json')
         y: sumValuesByYear[index]
     }));
 
-
     // Utilisez D3.js pour créer un graphique en ligne
     const svg = d3.select('.graphique');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
