@@ -240,6 +240,13 @@ height: 100vh;
 bottom: 0;
 left: 0;
 }
+
+.fofo p{
+
+  background-color: #EBF3F3;
+  padding: 1vh;
+
+}
 /* ALEX FIN */
 main {
   width: 100%;
