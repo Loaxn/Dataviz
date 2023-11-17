@@ -1,10 +1,9 @@
 
-
-// Sélectionnez tous les éléments de type "path" et "polygon" et ajoutez un écouteur d'événements pour le clic
+//on selectionne les paths et les polygon de la carte
 document.querySelectorAll("path, polygon").forEach(element => {
 element.addEventListener('click', function () {
-// Récupérez l'identifiant de l'État à partir de l'élément cliqué
-const CRITERIA_STATE = this.id;
+//on récupère les etats choisis
+    const CRITERIA_STATE = this.id;
 fetch('data2.json')
     .then((response) => response.json())
     .then((dataFetched) => {
@@ -12,7 +11,7 @@ fetch('data2.json')
  const yearRange = Array.from({ length: 9 }, (_, index) => (2015 + index).toString());
 
  // on definit l'indicateur comme Methadone ou heroine
- const CRITERIA_INDICATOR = 'Methadone (T40.3)';
+ const CRITERIA_INDICATOR = 'Heroin (T40.1)';
 
  // on stocke la somme dans un tableau
  const sumValuesByYear = Array(yearRange.length).fill(0); 
