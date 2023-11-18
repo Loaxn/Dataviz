@@ -444,9 +444,6 @@ color: var(--Lerouge);
   bottom: 0;
   pointer-events: none;
 }
-.visible {
-  display: block;
-}
 .container {
   position: relative;
   display: flex;
@@ -572,4 +569,11 @@ footer {
 p{
  font-family: "Poppins";
 
+}
+
+.invisible {
+  display: none;
+}
+.visible {
+  display: block;
 }
