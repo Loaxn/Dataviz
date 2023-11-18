@@ -283,7 +283,8 @@ padding-bottom: 1vw;
 
 .modal__content {
   border-radius: 4px;
-  position: absolute;
+  /* position: absolute; */
+  /* overflow-y: scroll; */
   height:fit-content;
   width: 100%;
   background: #fff;
