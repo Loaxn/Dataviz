@@ -16,7 +16,7 @@ const coords = {
 }; //le 8 correspond à la moitié de la taille du mini_cercle, pour bien le centrer
 mini_cercle.style.setProperty('transform', `translate(${coords.left}px,${coords.top}px)`);//Le minicercle se place sur le bon etat au moment du hover
 
-const CRITERIA_STATE = this.id; //recupérer le nom de l'etat dans l'id de la carte
+CRITERIA_STATE = this.id; //recupérer le nom de l'etat dans l'id de la carte
 //Affichage de la description en fonction de l'etat
 fetch('data2.json')
     .then((response) => response.json())
@@ -147,7 +147,7 @@ fetch('data2.json')
             // console.log(CRITERIA_YEAR)
 
             d3.selectAll(".map_image path, polygon").each(function (d, i) {
-                const CRITERIA_STATE = this.id;
+                CRITERIA_STATE = this.id;
                 // console.log(CRITERIA_STATE)
                 const dataReduced = dataFetched.filter(d => {
                     if (
@@ -200,7 +200,7 @@ fetch('data2.json')
 
         //Pour que les couleurs soient déjà affichés avant qu'on change le select
         d3.selectAll(".map_image path, polygon").each(function (d, i) {
-            const CRITERIA_STATE = this.id;
+            CRITERIA_STATE = this.id;
             // console.log(CRITERIA_STATE)
             const dataReduced = dataFetched.filter(d => {
                 if (
