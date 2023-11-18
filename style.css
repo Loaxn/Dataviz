@@ -508,9 +508,17 @@ background-color: #1F5766;
 .graphiqueinfo {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
+
+.graphiqueinfo p {
+  display: flex;
+  justify-content: space-between;
+  /* width: 80%; */
+  margin: auto;
+}
+
 .graphiqueboutons {
   width: 100%;
   margin-right: 50px;
@@ -542,7 +550,7 @@ background-color: #1F5766;
   font-size: 1rem;
 }
 .info img {
-  width: 100%;
+  width: 80%;
 }
 
 footer {

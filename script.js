@@ -317,7 +317,8 @@ function tracedrogue () {//fonction qui trace le graphique
             y: sumValuesByYear[index]
         }));
         console.log(dataPoints)
-        // Utilisez D3.js pour créer un graphique en ligne
+
+        //  créer un graphique en ligne
         const svg = d3.select('.graphique');
         const margin = { top: 20, right: 20, bottom: 30, left: 50 };
         const width = +svg.attr('width') - margin.left - margin.right;
@@ -335,24 +336,24 @@ function tracedrogue () {//fonction qui trace le graphique
             .x(d => x(d.x))
             .y(d => y(d.y));
     
-        // Effacez le contenu existant du groupe
+        // Effacer le contenu existant du groupe
             svg.select(".graphGroup").remove();
     
     
-        // Ajoutez un groupe pour le tracé du graphe
+        // Ajout d' un groupe pour le tracé du graphe
         const graphGroup = svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`)
             .attr('class',"graphGroup");
        
     
     
-        // Ajoutez la ligne du graphique avec le dégradé
+        // Ajout de la ligne du graphique avec le dégradé
         const linePath = graphGroup.append('path')
             .data([dataPoints])
             .attr('class', 'line')
             .attr('d', line)
-            .style('stroke', 'url(#line-gradient)') // Utilisez le dégradé
-            .style('stroke-width', 3) // Ajustez l'épaisseur du trait
+            .style('stroke', 'url(#line-gradient)') //  dégradé
+            .style('stroke-width', 3) // épaisseur du trait
             .attr('fill', 'none');
     
         // Création et Ajout du dégradé au SVG
