@@ -515,9 +515,6 @@ background-color: #1F5766;
 }
 
 .graphiqueinfo p {
-  display: flex;
-  justify-content: space-between;
-  /* width: 80%; */
   margin: auto;
 }
 
