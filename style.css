@@ -262,11 +262,10 @@ padding-bottom: 1vw;
   display: inline-block;
   text-decoration: none;
   padding: 15px;
-  background-color: #000;
   border-radius: 11px;
-  text-transform: uppercase;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
+  color: #9D1815;
+  font-family: 'Poppins';
+  text-align: center;
 }
 
 .modal {
@@ -292,16 +291,23 @@ padding-bottom: 1vw;
 .modal__content {
   border-radius: 4px;
   position: relative;
-  width: 40vw;
-  max-width: 90%;
+  
+  max-width: 100%;
   background: #fff;
-  padding: 1em 2em;
+  padding: 1em  2em;
 }
 
 .modal__footer {
   text-align: right;
   }
 
+
+.modal__footer a {
+text-decoration: none;
+color:#9D1815;
+font-size: 2em;
+
+}
 
 .modal__close {
   position: absolute;
@@ -310,6 +316,8 @@ padding-bottom: 1vw;
   color: #585858;
   text-decoration: none;
 }
+
+
 /* ALEX FIN */
 main {
   width: 100%;
@@ -464,6 +472,19 @@ margin-right: 10px;
   justify-content: space-between;
   color: var(--Lerouge);
 }
+
+
+.select_annee{
+  font-size: 1.2rem;
+  background-color:#1F5766;
+  font-family: "Poppins";
+   width: 20%;
+   border-radius: 10px;
+   text-align: center;
+   color: white;
+}
+
+
 /* FIN CARTE  */
 
 /* GRAPHIQUE */
