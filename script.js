@@ -410,6 +410,11 @@ function tracedrogue () {//fonction qui trace le graphique
 
             d3.select(".graphiqueboutons p")
         .text(this.value + " in " + CRITERIA_STATE)
+
+
+
+        d3.select(".info")
+        
             
 
     });
