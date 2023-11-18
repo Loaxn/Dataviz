@@ -518,6 +518,14 @@ background-color: #1F5766;
   width: 90%;
   margin: auto;
 }
+
+.graphiqueinfo p {
+  display: flex;
+  justify-content: space-between;
+  /* width: 80%; */
+  margin: auto;
+}
+
 .graphiqueboutons {
   width: 100%;
   margin-right: 50px;
