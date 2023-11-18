@@ -497,11 +497,18 @@ background-color: #1F5766;
 
 .graph h2{
   color: aliceblue;
-  
+  width: 90%;
+  margin: auto;
   
 }
 .boutons {
   margin-bottom: 20px;
+}
+.graphiqueboutons p {
+  color: white;
+  font-size: 1.5rem;
+  margin: auto;
+  text-align: center;
 }
 
 
