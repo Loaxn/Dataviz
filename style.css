@@ -244,8 +244,71 @@ left: 0;
 .fofo p{
 
   background-color: #EBF3F3;
-  padding: 1vh;
+  padding: 0;
+  margin: 0;
+  padding-left: 1vh;
+  padding-top: 1vh;
 
+}
+
+
+.wrapper {
+background-color: #EBF3F3;
+padding-left: 0.2vw;
+padding-bottom: 1vw;
+}
+
+.wrapper a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px;
+  background-color: #000;
+  border-radius: 11px;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, .7);
+  transition: all .4s;
+}
+
+.modal:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__content {
+  border-radius: 4px;
+  position: relative;
+  width: 40vw;
+  max-width: 90%;
+  background: #fff;
+  padding: 1em 2em;
+}
+
+.modal__footer {
+  text-align: right;
+  }
+
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #585858;
+  text-decoration: none;
 }
 /* ALEX FIN */
 main {
@@ -344,7 +407,7 @@ color: var(--Lerouge);
 }
 .cercle {
   border: solid var(--Lerouge);
-  border-width: 1.5vw;
+  border-width: 1.3vw;
   border-radius: 100%;
   width: 10vw;
   height: 10vw;
@@ -353,7 +416,7 @@ color: var(--Lerouge);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--Lerouge);
   margin-right: 10px;
 }
