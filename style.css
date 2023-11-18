@@ -8,310 +8,317 @@
   --Lerouge: #9D1815;
 }
 body{
-background: #EBF3F3;
-margin: 0;
-height: 100vh; /*This centers vertically within the viewport*/
-margin: 0; /* Remove default margin to center horizontally */
-font-family: 'Odibee Sans', sans-serif;
-
-}
-
-/* ALEX  */
-
-.header { 
- text-align: center; 
- background-color: #488693;
- z-index: -2;
- height: 100vh;
- position: relative;
- overflow: hidden;
-}
-
-.text{
-  border-radius: 1.375rem;
-  background: rgba(9, 56, 68, 0.7);
-  backdrop-filter: blur(4.5px);
-  z-index: -0;
-  width: 28vw;
-  height: 17vw;
-position: absolute;
-margin-left: 15vw;
-    margin-top: 13vw;
+  background: #EBF3F3;
+  margin: 0;
+  height: 100vh; /*This centers vertically within the viewport*/
+  margin: 0; /* Remove default margin to center horizontally */
+  font-family: 'Odibee Sans', sans-serif;
+  
+  }
+  
+  /* ALEX  */
+  
+  .header { 
+   text-align: center; 
+   background-color: #488693;
+   z-index: -2;
+   height: 100vh;
+   position: relative;
+   overflow: hidden;
+  }
+  
+  .text {
+    border-radius: 1.375rem;
+    background: rgba(9, 56, 68, 0.7);
+    backdrop-filter: blur(4.5px);
+    z-index: -0;
+    width: 28vw;
+    height: 17vw;
+    position: absolute;
+    left: 15vw;
+    top: 13vw;
     padding: 1vw;
-text-align: left;
+    text-align: left;
+  }
+  
+  .text-in {
+    color: #FFF;
+    font-size: 1.2vw;
+    line-height: normal;
+    width: 83%;
+    height: 21%;
+    font-family: "Poppins";
+  }
+  
+  .text1 {
+    z-index: 3;
+    width: 50vw;
+    position: absolute;
+    left: 50%;
+    top: 11vw;
+    transform: translate(-50%, -50%);
+  }
+  
+  
+  .img-in1{
+  width: 100%;
+  }
+
+  
+  .text2 {
+    border-radius: 1.375rem;
+    background: rgba(9, 56, 68, 0.70);
+    backdrop-filter: blur(4.5px);
+    z-index: -0;
+    width: 30vw;
+    height: 14vw;
+    position: absolute;
+    left: 57vw;
+    top: 30vw;
+    padding: 1vw;
+    font-family: "Poppins";   
+  }
+  
+  .text-in2 {
+    color: #FFF;
+    font-family: "Poppins";
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 98%;
+    height: 21%;
+    text-align: left;
+    margin-left: 10px;
+  }
+  
+  
+  .skeleton{
+    width: 60%;
+  }
+  
+  .skeleton { 
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: 4;
+  } /* Code qui donne un effet de flottement à l'image */
+  
+  @keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 15px); }
+    100% { transform: translate(0, -0px); } 
+  }
+  
+  .pill{
+    width: 20%;
+    position: absolute;
+    top: 2vw;
+    right: 10vw;
     
-
-
-}
-
-.text1{
+  }
+  
+  .pill2{
+    width: 22%;
+    position: absolute;
+    top: 60vh;
+    left: 2vw;
+  }
+  
+  .pill3{
+    width: 23%;
+    position: absolute;
+    top: 70vh;
+  }
+  
+  .pill4{
+    width: 35%;
+    position: absolute;
+    top: 1vw;
+    left: 20vw;
+  }
+  
+  .tes{
+    width: 45%;
+    position: absolute;
+    top: 12vw;
+    left: 10vw;
+  }
+  
+  .animation1 { 
+    animation-name: floating1;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: 2;
+  } /* Code qui donne un effet de flottement à l'image */
+  
+  .animation2 { 
+    animation-name: floating2;
+    animation-duration: 2.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: 2;
+  } /* Code qui donne un effet de flottement à l'image */
+  
+  .animation3 { 
+    animation-name: floating3;
+    animation-duration: 2.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: -2;
+  } /* Code qui donne un effet de flottement à l'image */
+  
+  .animation4 { 
+    animation-name: floating4;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: -2;
+  } /* Code qui donne un effet de flottement à l'image */
+  
+  .animation5 { 
+    animation-name: floating5;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: -2;
+  }
+  
+  @keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 15px); }
+    100% { transform: translate(0, -0px); } 
+    
+  }
+  
+  @keyframes floating1 {
+    0% { transform: translate(0, 0px) rotate(25deg); }
+    50% { transform: translate(0, 60px) rotate(25deg); }
+    100% { transform: translate(0, -0px) rotate(25deg); } 
+  
+  }
+  
+  
+  @keyframes floating2 {
+    0% { transform: translate(0, 0px) rotate(-25deg); }
+    50% { transform: translate(0, 30px) rotate(-30deg); }
+    100% { transform: translate(0, -0px) rotate(-25deg); } 
+  }
+  
+  @keyframes floating3 {
+    0% { transform: translate(0, 0px) rotate(15deg); }
+    50% { transform: translate(0, 15px) rotate(15deg); }
+    100% { transform: translate(0, -0px) rotate(15deg); } 
+  }
+  
+  @keyframes floating4 {
+    0% { transform: translate(0, 0px) rotate(-50deg); }
+    50% { transform: translate(0, 70px) rotate(-50deg); }
+    100% { transform: translate(0, -0px) rotate(-50deg); } 
+  }
+  
+  @keyframes floating5 {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 70px); }
+    100% { transform: translate(0, -0px); } 
+  }
+  
+  .fog{
+  position: absolute;
   z-index: 3;
-  width: 50vw;
-position: absolute;
-margin-left: 25%;
-margin-top: -15vh;
-    
-
-
-}
-
-.img-in1{
-width: 100%;
-}
-.text-in{
-color: #FFF;
-font-size: 1.2vw;
-line-height: normal;
-width: 83%;
-height: 21%;
-font-family: "Poppins";
-}
-
-.text2{
-  border-radius: 1.375rem;
-  background: rgba(9, 56, 68, 0.70);
-  backdrop-filter: blur(4.5px);
-  z-index: -0;
-  width: 30vw;
-  height: 14vw;
-position: absolute;
-margin-left: 57vw;
-margin-top: 30vw;
-padding: 1vw;
-font-family: "Poppins";   
-
-
-}
-
-
-
-.text-in2{
-color: #FFF;
-font-family: "Poppins";
-font-size: 1.2vw;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-width: 98%;
-height: 21%;
-text-align: left;
-margin-left: 10px;
-}
-
-
-
-.skeleton{
-  width: 60%;
-}
-
-.skeleton { 
-	animation-name: floating;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: 4;
-} /* Code qui donne un effet de flottement à l'image */
-
-@keyframes floating {
-	0% { transform: translate(0, 0px); }
-	50% { transform: translate(0, 15px); }
-	100% { transform: translate(0, -0px); } 
-}
-
-.pill{
-  width: 20%;
-  position: absolute;
-  top: 2vw;
-  right: 10vw;
-  
-}
-
-.pill2{
-  width: 22%;
-  position: absolute;
-  top: 60vh;
-  left: 2vw;
-}
-
-.pill3{
-  width: 23%;
-  position: absolute;
-  top: 70vh;
-}
-
-.pill4{
-  width: 35%;
-  position: absolute;
-  top: 1vw;
-  left: 20vw;
-}
-
-.tes{
-  width: 45%;
-  position: absolute;
-  top: 12vw;
-  left: 10vw;
-}
-
-.animation1 { 
-	animation-name: floating1;
-	animation-duration: 4s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: 2;
-} /* Code qui donne un effet de flottement à l'image */
-
-.animation2 { 
-	animation-name: floating2;
-	animation-duration: 2.8s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: 2;
-} /* Code qui donne un effet de flottement à l'image */
-
-.animation3 { 
-	animation-name: floating3;
-	animation-duration: 2.6s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: -2;
-} /* Code qui donne un effet de flottement à l'image */
-
-.animation4 { 
-	animation-name: floating4;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: -2;
-} /* Code qui donne un effet de flottement à l'image */
-
-.animation5 { 
-	animation-name: floating5;
-	animation-duration: 4s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-  z-index: -2;
-}
-
-@keyframes floating {
-	0% { transform: translate(0, 0px); }
-	50% { transform: translate(0, 15px); }
-	100% { transform: translate(0, -0px); } 
-  
-}
-
-@keyframes floating1 {
-	0% { transform: translate(0, 0px) rotate(25deg); }
-	50% { transform: translate(0, 60px) rotate(25deg); }
-	100% { transform: translate(0, -0px) rotate(25deg); } 
-
-}
-
-
-@keyframes floating2 {
-	0% { transform: translate(0, 0px) rotate(-25deg); }
-	50% { transform: translate(0, 30px) rotate(-30deg); }
-	100% { transform: translate(0, -0px) rotate(-25deg); } 
-}
-
-@keyframes floating3 {
-	0% { transform: translate(0, 0px) rotate(15deg); }
-	50% { transform: translate(0, 15px) rotate(15deg); }
-	100% { transform: translate(0, -0px) rotate(15deg); } 
-}
-
-@keyframes floating4 {
-	0% { transform: translate(0, 0px) rotate(-50deg); }
-	50% { transform: translate(0, 70px) rotate(-50deg); }
-	100% { transform: translate(0, -0px) rotate(-50deg); } 
-}
-
-@keyframes floating5 {
-	0% { transform: translate(0, 0px); }
-	50% { transform: translate(0, 70px); }
-	100% { transform: translate(0, -0px); } 
-}
-
-.fog{
-position: absolute;
-z-index: 3;
-width: 100%;
-height: 100vh;
-bottom: 0;
-left: 0;
-}
-
-
-
-
-.wrapper {
-background-color: #EBF3F3;
-padding-left: 0.2vw;
-padding-bottom: 1vw;
-
-}
-
-.wrapper a {
-  display: inline-block;
-  text-decoration: none;
-  padding: 15px;
-  border-radius: 11px;
-  color: #9D1815;
-  font-family: 'Poppins';
-  text-align: center;
-}
-
-.modal {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
+  width: 100%;
+  height: 100vh;
   bottom: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(77, 77, 77, .7);
-  transition: all .4s;
-}
-
-.modal:target {
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal__content {
-  border-radius: 4px;
-  /* position: absolute; */
-  /* overflow-y: scroll; */
-  height:fit-content;
-  width: 100%;
-  background: #fff;
-  padding: 1em  2em;
-}
-
-.modal__footer {
-  text-align: right;
   }
 
 
-.modal__footer a {
-text-decoration: none;
-color:#9D1815;
-font-size: 2em;
 
-}
 
-.modal__close {
-  position: absolute;
-  top: 10px;
-  right: 50px;
-  color: #0e0e0e;
-  text-decoration: none;
-  font-size: 4rem;
-  font-family: "Poppins";
-}
+  .wrapper {
+    background-color: #EBF3F3;
+    padding-left: 0.2vw;
+    padding-bottom: 1vw;
+  }
+  
+  .wrapper a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 11px;
+    color: #9D1815;
+    font-family: 'Poppins';
+    text-align: center;
+  }
+  
+  .modal {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block !important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s;
+    max-width: 80%;
+    max-height: 90vh;
+    overflow: auto;
+  }
+  
+  .modal:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .modal__content {
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: fit-content;
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 2em;
+  }
+  
+  .modal__footer {
+    text-align: right;
+  }
+  
+  .modal__footer a {
+    text-decoration: none;
+    color: #9D1815;
+    font-size: 2em;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: #0e0e0e;
+    text-decoration: none;
+    font-size: 4rem;
+    font-family: "Poppins";
+  }
+  
+  /* Media query for responsiveness */
+  @media screen and (max-width: 768px) {
+    .modal {
+      max-width: 90%;
+    }
+  
+    .modal__content {
+      max-width: 100%;
+      padding: 1em;
+      margin-top: 10%; /* Increase the top margin for smaller screens */
+    }
+  }
+  
+
+
 
 
 /* ALEX FIN */
