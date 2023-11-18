@@ -241,21 +241,14 @@ bottom: 0;
 left: 0;
 }
 
-.fofo p{
 
-  background-color: #EBF3F3;
-  padding: 0;
-  margin: 0;
-  padding-left: 1vh;
-  padding-top: 1vh;
-
-}
 
 
 .wrapper {
 background-color: #EBF3F3;
 padding-left: 0.2vw;
 padding-bottom: 1vw;
+
 }
 
 .wrapper a {
@@ -290,9 +283,9 @@ padding-bottom: 1vw;
 
 .modal__content {
   border-radius: 4px;
-  position: relative;
-  
-  max-width: 100%;
+  position: absolute;
+  height:fit-content;
+  width: 100%;
   background: #fff;
   padding: 1em  2em;
 }
@@ -312,9 +305,11 @@ font-size: 2em;
 .modal__close {
   position: absolute;
   top: 10px;
-  right: 10px;
-  color: #585858;
+  right: 50px;
+  color: #0e0e0e;
   text-decoration: none;
+  font-size: 4rem;
+  font-family: "Poppins";
 }
 
 
