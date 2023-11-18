@@ -407,7 +407,7 @@ color: var(--Lerouge);
 }
 .cercle {
   border: solid var(--Lerouge);
-  border-width: 1.3vw;
+  border-width: 1.2vw;
   border-radius: 100%;
   width: 10vw;
   height: 10vw;
