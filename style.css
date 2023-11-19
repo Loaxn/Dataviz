@@ -17,84 +17,90 @@ body{
   }
   
   /* ALEX  */
-  
+  header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #488693;
+    background-image: url(img/fog3.png);
+    background-size: cover;
+    background-attachment: fixed;
+  }
   .header { 
    text-align: center; 
-   background-color: #488693;
-   z-index: -2;
-   height: 100vh;
+   z-index: 1;
+   height: fit-content;
    position: relative;
    overflow: hidden;
+   width: 100%;
+   max-height: 100%;
   }
   
-  .text {
+  .header p {
     border-radius: 1.375rem;
     background: rgba(9, 56, 68, 0.7);
     backdrop-filter: blur(4.5px);
     z-index: -0;
-    width: 28vw;
-    height: 17vw;
+    height: fit-content;
     position: absolute;
-    left: 15vw;
-    top: 13vw;
-    padding: 1vw;
-    text-align: left;
-  }
-  
-  .text-in {
     color: #FFF;
-    font-size: 1.2vw;
+    font-size: 0.8rem;
     line-height: normal;
-    width: 83%;
-    height: 21%;
     font-family: "Poppins";
   }
+  .text {
+    width: 28vw;
+    left: 30%;
+    top: 13vw;
+    transform: translate(-50%, 50%);
+    padding: 1vw;
+    text-align: left;
+    padding-right: 8vw;
+  }
   
+  .text2 {
+    width: 30vw;
+    right: 30%;
+    bottom: 10vw;
+    transform: translate(50%, 50%);
+    padding: 1vw;
+    text-align: right;
+    padding-left: 3vw;
+  }
   .text1 {
     z-index: 3;
     width: 50vw;
+    max-width: 600px;
     position: absolute;
     left: 50%;
-    top: 11vw;
-    transform: translate(-50%, -50%);
+    top: 20px;
+    transform: translate(-50%);
   }
   
+  @media (max-width: 800px) {
+    .text {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .text2 {
+      top: 50%;
+      transform: translate(50%, -50%);
+      padding-left: 8vw;
+    }
+    .text1 {
+      top: 0;
+    }
+  }
   
   .img-in1{
   width: 100%;
-  }
-
-  
-  .text2 {
-    border-radius: 1.375rem;
-    background: rgba(9, 56, 68, 0.70);
-    backdrop-filter: blur(4.5px);
-    z-index: -0;
-    width: 30vw;
-    height: 14vw;
-    position: absolute;
-    left: 57vw;
-    top: 30vw;
-    padding: 1vw;
-    font-family: "Poppins";   
-  }
-  
-  .text-in2 {
-    color: #FFF;
-    font-family: "Poppins";
-    font-size: 1.2vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 98%;
-    height: 21%;
-    text-align: left;
-    margin-left: 10px;
   }
   
   
   .skeleton{
     width: 60%;
+    max-width: 800px;
   }
   
   .skeleton { 
@@ -114,36 +120,36 @@ body{
   .pill{
     width: 20%;
     position: absolute;
-    top: 2vw;
-    right: 10vw;
+    top: 0;
+    right: 10%;
     
   }
   
   .pill2{
     width: 22%;
     position: absolute;
-    top: 60vh;
-    left: 2vw;
+bottom: 0;
+left: 0;
   }
   
   .pill3{
-    width: 23%;
+    width: 10%;
     position: absolute;
-    top: 70vh;
+    bottom: 0;
   }
   
   .pill4{
-    width: 35%;
+    width: 13%;
     position: absolute;
     top: 1vw;
     left: 20vw;
   }
   
   .tes{
-    width: 45%;
+    width: 15%;
     position: absolute;
-    top: 12vw;
-    left: 10vw;
+    bottom: 10%;
+    left: 23%;
   }
   
   .animation1 { 
