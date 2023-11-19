@@ -6,7 +6,9 @@ This website constitutes a work of the mind within the meaning of the Intellectu
 
 # Contributors
 Alexandre Rodriguez: Front-end developper and web editor
+
 Alina Zhyla: Back-end developper and web-designer
+
 Loana Chalach: project manager and back-end developper
 
 # Link of the website
