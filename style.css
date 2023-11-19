@@ -241,16 +241,20 @@ body{
     background-color: #EBF3F3;
     padding-left: 0.2vw;
     padding-bottom: 1vw;
+    text-align: center;
+    border-top:solid #9D1815;
+
   }
   
   .wrapper a {
     display: inline-block;
     text-decoration: none;
     padding: 15px;
-    border-radius: 11px;
     color: #9D1815;
     font-family: 'Poppins';
-    text-align: center;
+    font-weight: bold;
+
+
   }
   
   .modal {
@@ -297,26 +301,22 @@ body{
   .modal__close {
     position: absolute;
     top: 10px;
-    right: 50px;
+    right: 20px;
     color: #0e0e0e;
     text-decoration: none;
-    font-size: 4rem;
+    font-size: 2rem;
     font-family: "Poppins";
   }
   
-  /* Media query for responsiveness */
-  @media screen and (max-width: 768px) {
-    .modal {
-      max-width: 90%;
-    }
-  
-    .modal__content {
-      max-width: 100%;
-      padding: 1em;
-      margin-top: 10%; /* Increase the top margin for smaller screens */
-    }
+  h3{
+    font-size: 1.5rem;
   }
-  
+
+  span{
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
 
 
 
@@ -556,12 +556,14 @@ background-color: #1F5766;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+ 
+  
 }
 .info img {
-  width: 100%;
+ margin-top: 30px;
   max-width: 300px;
+  float: right;
+  border-radius: 10px;
 }
 
 footer {
@@ -580,3 +582,20 @@ p{
 .visible {
   display: block;
 }
+
+
+/* Media queries */
+
+  
+@media screen and (max-width: 768px) {
+  .modal {
+    max-width: 90%;
+  }
+
+  .modal__content {
+    max-width: 100%;
+    padding: 1em;
+    margin-top: 10%; 
+  }
+}
+
