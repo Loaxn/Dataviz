@@ -222,9 +222,9 @@ left: 0;
   }
   
   @keyframes floating5 {
-    0% { transform: translate(0, 0px); }
-    50% { transform: translate(0, 70px); }
-    100% { transform: translate(0, -0px); } 
+    0% { transform: translate(0, 0px) rotate(0deg); }
+    50% { transform: translate(0, 70px) rotate(10deg); }
+    100% { transform: translate(0, -0px) rotate(0deg); } 
   }
   
   .fog{
