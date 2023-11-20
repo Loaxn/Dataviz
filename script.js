@@ -290,7 +290,7 @@ fetch('data2.json')
     };
 
 function tracedrogue () {//fonction qui trace le graphique
-    //on récupère les etats choisis
+    //on récupère l'indicateur choisis
     const CRITERIA_INDICATOR = this.id;
     
     fetch('data2.json')
