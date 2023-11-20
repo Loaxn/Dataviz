@@ -173,7 +173,7 @@ fetch('data2.json')
         y: sumValuesByYear[index]
     }));
 
-    // Utilisez D3.js pour créer un graphique en ligne
+    //  D3.js pour créer un graphique en ligne
     const svg = d3.select('.graphique');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = +svg.attr('width') - margin.left - margin.right;
@@ -207,9 +207,9 @@ fetch('data2.json')
         .data([dataPoints])
         .attr('class', 'line')
         .attr('d', line)
-        .style('stroke', 'url(#line-gradient)') // Utilisez le dégradé
+        .style('stroke', 'white') // Utilisez le dégradé
         .style('stroke-width', 3) // Ajustez l'épaisseur du trait
-        .attr('fill', 'none');
+        .attr('fill', 'url(#line-gradient)');
 
     // Création et Ajout du dégradé au SVG
     svg.append("defs").append("linearGradient")
@@ -347,9 +347,9 @@ function tracedrogue () {//fonction qui trace le graphique
             .data([dataPoints])
             .attr('class', 'line')
             .attr('d', line)
-            .style('stroke', 'url(#line-gradient)') //  dégradé
+            .style('stroke', 'white') //  dégradé
             .style('stroke-width', 3) // épaisseur du trait
-            .attr('fill', 'none');
+            .attr('fill', 'url(#line-gradient)');
     
         // Création et Ajout du dégradé au SVG
         svg.append("defs").append("linearGradient")
