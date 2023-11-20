@@ -13,9 +13,8 @@ body{
   height: 100vh; /*This centers vertically within the viewport*/
   margin: 0; /* Remove default margin to center horizontally */
   font-family: 'Odibee Sans', sans-serif;
-  
   }
-  
+
   /* ALEX  */
   header {
     height: 100vh;
@@ -266,7 +265,9 @@ left: 0;
     overflow: auto;
     z-index: 1;
   }
-  
+  .modal p {
+    font-family: 'poppins', sans-serif;
+  }
   .modal:target {
     visibility: visible;
     opacity: 1;
@@ -636,6 +637,20 @@ strong {
   width: 25px;
   height: 25px;
   margin: 0;
+}
+
+/*animation de la courbe*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.line {
+  animation: fadeIn 1.2s ease;
 }
 
 /* Media queries */
