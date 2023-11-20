@@ -82,9 +82,9 @@ fetch('data2.json')
         .attr("x2", 0).attr("y2", y(d3.max(dataPoints, d => d.y)))
         .selectAll("stop")
         .data([
-            { offset: "0%", color: "#E42A2A" },
-            { offset: "50%", color: "#DA5B58" },
-            { offset: "100%", color: "#ED8240" }
+            { offset: "0%", color: "#e42a2a00" },
+            { offset: "50%", color: "#da5a587a" },
+            { offset: "100%", color: "#ed8240d8" }
         ])
         .enter().append("stop")
         .attr("offset", d => d.offset)
@@ -173,7 +173,11 @@ fetch('data2.json')
         y: sumValuesByYear[index]
     }));
 
-    // Utilisez D3.js pour créer un graphique en ligne
+    dataPoints.unshift({ x:2015, y: 0 });
+
+    dataPoints.push({ x: 2023, y: 0 })
+
+    //  D3.js pour créer un graphique en ligne
     const svg = d3.select('.graphique');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = +svg.attr('width') - margin.left - margin.right;
@@ -189,7 +193,8 @@ fetch('data2.json')
 
     const line = d3.line()
         .x(d => x(d.x))
-        .y(d => y(d.y));
+        .y(d => y(d.y))
+        .curve(d3.curveLinear);
 
     // Effacez le contenu existant du groupe
         svg.select(".graphGroup").remove();
@@ -207,9 +212,10 @@ fetch('data2.json')
         .data([dataPoints])
         .attr('class', 'line')
         .attr('d', line)
-        .style('stroke', 'url(#line-gradient)') // Utilisez le dégradé
+        .style('stroke', 'white') // Utilisez le dégradé
         .style('stroke-width', 3) // Ajustez l'épaisseur du trait
-        .attr('fill', 'none');
+        .attr('fill', 'url(#line-gradient)')
+        .attr('opacity','.5');
 
     // Création et Ajout du dégradé au SVG
     svg.append("defs").append("linearGradient")
@@ -311,6 +317,11 @@ function tracedrogue () {//fonction qui trace le graphique
             x: parseInt(year, 10), // Utilisez parseInt pour obtenir un nombre entier mais ça marche pas 
             y: sumValuesByYear[index]
         }));
+
+        dataPoints.unshift({ x:2015, y: 0 });
+
+        dataPoints.push({ x: 2023, y: 0 })
+
         console.log(dataPoints)
 
         //  créer un graphique en ligne
@@ -329,7 +340,8 @@ function tracedrogue () {//fonction qui trace le graphique
     
         const line = d3.line()
             .x(d => x(d.x))
-            .y(d => y(d.y));
+            .y(d => y(d.y))
+            .curve(d3.curveLinear);
     
         // Effacer le contenu existant du groupe
             svg.select(".graphGroup").remove();
@@ -347,14 +359,14 @@ function tracedrogue () {//fonction qui trace le graphique
             .data([dataPoints])
             .attr('class', 'line')
             .attr('d', line)
-            .style('stroke', 'url(#line-gradient)') //  dégradé
+            .style('stroke', 'white') //  dégradé
             .style('stroke-width', 3) // épaisseur du trait
-            .attr('fill', 'none');
+            .attr('fill', 'url(#line-gradient)');
     
         // Création et Ajout du dégradé au SVG
         svg.append("defs").append("linearGradient")
             .attr("id", "line-gradient")
-            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("gradientUnits", "userSpaceO'e(zé&nUse")
             .attr("x1", 0).attr("y1", y(0))
             .attr("x2", 0).attr("y2", y(d3.max(dataPoints, d => d.y)))
             .selectAll("stop")
@@ -378,6 +390,7 @@ function tracedrogue () {//fonction qui trace le graphique
             .duration(1500) // Durée de l'animation en millisecondes
             .ease(d3.easeLinear)
             .attr('stroke-dashoffset', 0);
+           
     
         // Ajout des cercles pour chaque point de données
         graphGroup.selectAll('circle')
@@ -386,7 +399,9 @@ function tracedrogue () {//fonction qui trace le graphique
             .attr('cx', d => x(d.x))
             .attr('cy', d => y(d.y))
             .attr('r', 4) // Rayon du cercle
-            .attr('fill', 'white'); // Couleur du cercl
+            .attr('fill', 'white') // Couleur du cercl
+            
+            
     
         // Ajout des axes x et y
         graphGroup.append('g')

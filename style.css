@@ -590,6 +590,7 @@ footer {
 }
 .visible {
   display: block;
+  color: #ed8240d8;
 }
 .info p {
   margin: 0;
