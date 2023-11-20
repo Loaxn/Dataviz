@@ -479,6 +479,7 @@ margin-right: 10px;
 .graph {
 height: 90vh;
 background-color: #1F5766;
+background: linear-gradient(80deg, rgba(0,0,0,1) 0%, rgba(31,87,102,1) 0%, rgba(31,87,102,1) 56%, rgba(0,0,0,1) 78%);
 }
 .graph p {
   font-family: 'poppins', sans-serif;
@@ -552,6 +553,7 @@ background-color: #1F5766;
   height: 90vh;
     top: -52px;
     overflow: auto;
+    background-color: #0e0e0e7a;
 }
 /*code copié sur internet*/
 .info {
