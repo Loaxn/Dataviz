@@ -80,32 +80,6 @@ function sortie () {//Ce qui se passe quand la souris sort dans l'etat
     mini_cercle.classList.remove('visible');
 }
 
-// function animation () {//la petite animation qui relie le mini cercle et la description
-//     const mapcoords = map.getBoundingClientRect();//récupérer les coordonnées de la carte
-//     const cerclecoords = mini_cercle.getBoundingClientRect();//récupérer les coordonnées du cercle
-//     const infocoords = document.querySelector('.cercle_info').getBoundingClientRect();//récupérer les coordonnées des info
-
-//     const trait = document.querySelector('.trait path');
-//     const svgcoords = document.querySelector('.trait').getBoundingClientRect();
-
-//     const coordsdebut = {
-//         top: (cerclecoords.top - mapcoords.top + 56),
-//         left: (cerclecoords.left - mapcoords.left + 125),
-//     }; 
-
-//     const coordsfin = {
-//         top: (infocoords.top - mapcoords.top),
-//         left: (infocoords.left - mapcoords.left),
-//     }; 
-//     // console.log(coordsdebut)
-//     // console.log(coordsfin)
-
-//     const pathCommand = `M${coordsdebut.left},${coordsdebut.top} L${coordsfin.left},${coordsfin.top}`;
-//     trait.setAttribute('d', pathCommand);
-
-//     console.log(cerclecoords)
-//     console.log(coordsdebut)
-// }
 
 triggers.forEach(trigger => trigger.addEventListener('mouseenter',entree));//quand la souris entre déclenche la fonction entree
 // triggers.forEach(trigger => trigger.addEventListener('mouseenter',animation));//quand la souris entre déclenche la fonction animation

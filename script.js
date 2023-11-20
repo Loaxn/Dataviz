@@ -35,6 +35,9 @@ fetch('data2.json')
         x: parseInt(year, 10), // Utilisez parseInt pour obtenir un nombre entier mais ça marche pas 
         y: sumValuesByYear[index]
     }));
+    dataPoints.unshift({ x:2015, y: 0 });
+
+    dataPoints.push({ x: 2023, y: 0 })
 
     // Utilisez D3.js pour créer un graphique en ligne
     const svg = d3.select('.graphique');
@@ -52,7 +55,8 @@ fetch('data2.json')
 
     const line = d3.line()
         .x(d => x(d.x))
-        .y(d => y(d.y));
+        .y(d => y(d.y))
+        .curve(d3.curveLinearClosed);
 
     // Effacez le contenu existant du groupe
         svg.select(".graphGroup").remove();
@@ -67,12 +71,12 @@ fetch('data2.json')
 
     // Ajoutez la ligne du graphique avec le dégradé
     const linePath = graphGroup.append('path')
-        .data([dataPoints])
-        .attr('class', 'line')
-        .attr('d', line)
-        .style('stroke', 'url(#line-gradient)') // Utilisez le dégradé
-        .style('stroke-width', 3) // Ajustez l'épaisseur du trait
-        .attr('fill', 'none');
+    .data([dataPoints])
+    .attr('class', 'line')
+    .attr('d', line)
+    .style('stroke', 'white') //  dégradé
+    .style('stroke-width', 3) // épaisseur du trait
+    .attr('fill', 'url(#line-gradient)');
 
     // Création et Ajout du dégradé au SVG
     svg.append("defs").append("linearGradient")
@@ -109,7 +113,9 @@ fetch('data2.json')
         .attr('cx', d => x(d.x))
         .attr('cy', d => y(d.y))
         .attr('r', 4) // Rayon du cercle
-        .attr('fill', 'white'); // Couleur du cercl
+        .attr('fill', 'white') // Couleur du cercl
+        .style('stroke', 'url(#line-gradient)')
+        .style('stroke-width', 3); // épaisseur du trait
 
     // Ajout des axes x et y
     graphGroup.append('g')
@@ -194,7 +200,7 @@ fetch('data2.json')
     const line = d3.line()
         .x(d => x(d.x))
         .y(d => y(d.y))
-        .curve(d3.curveLinear);
+        .curve(d3.curveLinearClosed);
 
     // Effacez le contenu existant du groupe
         svg.select(".graphGroup").remove();
@@ -209,13 +215,12 @@ fetch('data2.json')
 
     // Ajoutez la ligne du graphique avec le dégradé
     const linePath = graphGroup.append('path')
-        .data([dataPoints])
-        .attr('class', 'line')
-        .attr('d', line)
-        .style('stroke', 'white') // Utilisez le dégradé
-        .style('stroke-width', 3) // Ajustez l'épaisseur du trait
-        .attr('fill', 'url(#line-gradient)')
-        .attr('opacity','.5');
+    .data([dataPoints])
+    .attr('class', 'line')
+    .attr('d', line)
+    .style('stroke', 'white') //  dégradé
+    .style('stroke-width', 3) // épaisseur du trait
+    .attr('fill', 'url(#line-gradient)');
 
     // Création et Ajout du dégradé au SVG
     svg.append("defs").append("linearGradient")
@@ -252,7 +257,10 @@ fetch('data2.json')
         .attr('cx', d => x(d.x))
         .attr('cy', d => y(d.y))
         .attr('r', 4) // Rayon du cercle
-        .attr('fill', 'white'); // Couleur du cercl
+        .attr('fill', 'white')// Couleur du cercl
+        .style('stroke', 'url(#line-gradient)')
+        .style('stroke-width', 3); // épaisseur du trait
+
 
     // Ajout des axes x et y
     graphGroup.append('g')
@@ -341,7 +349,7 @@ function tracedrogue () {//fonction qui trace le graphique
         const line = d3.line()
             .x(d => x(d.x))
             .y(d => y(d.y))
-            .curve(d3.curveLinear);
+            .curve(d3.curveLinearClosed);
     
         // Effacer le contenu existant du groupe
             svg.select(".graphGroup").remove();
@@ -400,6 +408,8 @@ function tracedrogue () {//fonction qui trace le graphique
             .attr('cy', d => y(d.y))
             .attr('r', 4) // Rayon du cercle
             .attr('fill', 'white') // Couleur du cercl
+            .style('stroke', 'url(#line-gradient)')
+            .style('stroke-width', 3); // épaisseur du trait
             
             
     
