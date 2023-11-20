@@ -479,7 +479,7 @@ margin-right: 10px;
 .graph {
 height: 90vh;
 background-color: #1F5766;
-background: linear-gradient(80deg, rgba(0,0,0,1) 0%, rgba(31,87,102,1) 0%, rgba(31,87,102,1) 56%, rgba(0,0,0,1) 78%);
+/* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(31,87,102,1) 0%, rgba(31,87,102,1) 75%, rgba(0,0,0,1) 94%); */
 }
 .graph p {
   font-family: 'poppins', sans-serif;
@@ -547,13 +547,13 @@ background: linear-gradient(80deg, rgba(0,0,0,1) 0%, rgba(31,87,102,1) 0%, rgba(
   font-size: 0.8rem;
   display: flex;
   flex-direction: column;
- border-left: solid 1px white;
+ border-left: solid 1px #ebf3f3;
  padding-left: 30px;
   position: relative;
   height: 90vh;
     top: -52px;
     overflow: auto;
-    background-color: #0e0e0e7a;
+    /* background-color: #0e0e0e7a; */
 }
 /*code copié sur internet*/
 .info {
